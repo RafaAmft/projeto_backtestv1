@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-07-06T10:47:54.874104",
+  "resumo": {
+    "total_inconsistencias": 5,
+    "total_fundos_problematicos": 4,
+    "dados_processados": {
+      "rentab_ano": [
+        4651,
+        11
+      ],
+      "rentab_mes": [
+        14883,
+        12
+      ],
+      "diario": [
+        26963471,
+        7
+      ]
+    }
+  },
+  "inconsistencias_por_tipo": {
+    "RENTABILIDADE_EXTREMA_ANO": 3,
+    "RENTABILIDADE_EXTREMA_MES": 2
+  },
+  "inconsistencias_por_nivel": {
+    "ALTO": 5
+  },
+  "fundos_problematicos": {
+    "poucos_dados": [],
+    "dados_inconsistentes": [],
+    "rentabilidades_extremas": [
+      "53251337000138",
+      "55915452000195",
+      "36771076000168",
+      "46649069000141"
+    ],
+    "lacunas_temporais": []
+  },
+  "recomendacoes": [
+    "Dados estão consistentes - prosseguir com análise"
+  ]
+}

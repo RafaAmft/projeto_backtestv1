@@ -1,0 +1,214 @@
+{
+  "c3671d0874c90c058e3badd55ccd8db0": {
+    "cnpj": "00.017.021/0001-53",
+    "cache_date": "2025-07-06T12:55:04.198571",
+    "data": {
+      "cnpj": "00017021000153",
+      "nome": "Fundo Teste 2",
+      "slug": "fundo-teste-2",
+      "rentabilidades": {
+        "2024": {
+          "Jan": 0.08,
+          "Fev": 0.05,
+          "Mar": 0.09
+        },
+        "2023": {
+          "Jan": 0.06,
+          "Fev": 0.08,
+          "Mar": 0.04
+        }
+      }
+    }
+  },
+  "9567513aa3e85a0cd29cc60b6581f9f6": {
+    "cnpj": "21.538.709/0001-94",
+    "cache_date": "2025-07-06T12:58:51.071804",
+    "data": {
+      "nome": "BTG PACTUAL CRÉDITO CORPORATIVO PREVIDÊNCIA FI FINANCEIRO MULTIMERCADO",
+      "cnpj": "21.538.709/0001-94",
+      "slug": "btg-pactual-credito-corporativo-previdencia-fi-financeiro-multimercado",
+      "url": "https://maisretorno.com/fundo/btg-pactual-credito-corporativo-previdencia-fi-financeiro-multimercado",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {},
+        "2017": {},
+        "2016": {},
+        "2015": {}
+      },
+      "ultima_atualizacao": "2025-07-06T12:58:51.067797"
+    }
+  },
+  "d3aa3c89df20d3340a3342b1fa6721f3": {
+    "cnpj": "12.842.220/0001-90",
+    "cache_date": "2025-07-06T12:59:36.208214",
+    "data": {
+      "nome": "BRADESCO PRIVATE RATING 90 FI FINANCEIRO CIC RF CP RL",
+      "cnpj": "12.842.220/0001-90",
+      "slug": "bradesco-private-rating-90-fi-financeiro-cic-rf-cp-rl",
+      "url": "https://maisretorno.com/fundo/bradesco-private-rating-90-fi-financeiro-cic-rf-cp-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {},
+        "2017": {},
+        "2016": {},
+        "2015": {},
+        "2014": {},
+        "2013": {},
+        "2012": {},
+        "2011": {}
+      },
+      "ultima_atualizacao": "2025-07-06T12:59:36.202233"
+    }
+  },
+  "43158c3ef690f65120250d1fb43c1ccd": {
+    "cnpj": "19.690.093/0001-50",
+    "cache_date": "2025-07-06T13:00:14.222814",
+    "data": {
+      "nome": "SAFRA PREV CAPITAL MARKET VIP FIF PREVIDENCIÁRIO CIC RF CP PREV RL",
+      "cnpj": "19.690.093/0001-50",
+      "slug": "safra-prev-capital-market-vip-fif-previdenciario-cic-rf-cp-prev-rl",
+      "url": "https://maisretorno.com/fundo/safra-prev-capital-market-vip-fif-previdenciario-cic-rf-cp-prev-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {},
+        "2017": {},
+        "2016": {},
+        "2015": {}
+      },
+      "ultima_atualizacao": "2025-07-06T13:00:14.219813"
+    }
+  },
+  "305545fecafebf47da00974cd7d978a2": {
+    "cnpj": "26.010.436/0001-89",
+    "cache_date": "2025-07-06T13:01:05.625472",
+    "data": {
+      "nome": "GAP MAHALO FIM",
+      "cnpj": "26.010.436/0001-89",
+      "slug": "gap-mahalo-fim",
+      "url": "https://maisretorno.com/fundo/gap-mahalo-fim",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {}
+      },
+      "ultima_atualizacao": "2025-07-06T13:01:05.623473"
+    }
+  },
+  "59aa89420d365907dce9172823a22f4e": {
+    "cnpj": "18.832.847/0001-06",
+    "cache_date": "2025-07-06T13:04:26.420430",
+    "data": {
+      "nome": "VERSA LONG BIASED FI FINANCEIRO MULTIMERCADO RL",
+      "cnpj": "18.832.847/0001-06",
+      "slug": "versa-long-biased-fi-financeiro-multimercado-rl",
+      "url": "https://maisretorno.com/fundo/versa-long-biased-fi-financeiro-multimercado-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {},
+        "2017": {},
+        "2016": {},
+        "2015": {},
+        "2014": {},
+        "2013": {}
+      },
+      "ultima_atualizacao": "2025-07-06T13:04:26.416428"
+    }
+  },
+  "3556c488813f4eb6da2899adc64454ef": {
+    "cnpj": "11.182.072/0001-13",
+    "cache_date": "2025-07-06T14:58:39.965199",
+    "data": {
+      "nome": "LOGOS TOTAL RETURN FI FINANCEIRO COTAS FIM",
+      "cnpj": "11182072000113",
+      "slug": "logos-total-return-fi-financeiro-cotas-fim",
+      "url": "https://maisretorno.com/fundo/logos-total-return-fi-financeiro-cotas-fim",
+      "rentabilidades": {},
+      "ultima_atualizacao": "2025-07-06T14:58:39.963926"
+    }
+  },
+  "b9ef7662f550cd629a82b2d02375575f": {
+    "cnpj": "29.574.952/0001-09",
+    "cache_date": "2025-07-06T14:59:07.873649",
+    "data": {
+      "nome": "VERSA FIT LONG BIASED FI FINANCEIRO MULTIMERCADO RL",
+      "cnpj": "29574952000109",
+      "slug": "versa-fit-long-biased-fi-financeiro-multimercado-rl",
+      "url": "https://maisretorno.com/fundo/versa-fit-long-biased-fi-financeiro-multimercado-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {}
+      },
+      "ultima_atualizacao": "2025-07-06T14:59:07.873649"
+    }
+  },
+  "b166ddabe1a04b9f980ee2105933a8fc": {
+    "cnpj": "30.797.425/0001-34",
+    "cache_date": "2025-07-06T14:59:47.880317",
+    "data": {
+      "nome": "XP INVESTOR LONG BIASED DOMINUS FIC FI FINANCEIRO MULTIMERCADO RL",
+      "cnpj": "30797425000134",
+      "slug": "xp-investor-long-biased-dominus-fic-fi-financeiro-multimercado-rl",
+      "url": "https://maisretorno.com/fundo/xp-investor-long-biased-dominus-fic-fi-financeiro-multimercado-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {},
+        "2018": {}
+      },
+      "ultima_atualizacao": "2025-07-06T14:59:47.875154"
+    }
+  },
+  "a35c1b392b5dafdbe49c55dfe17e13fa": {
+    "cnpj": "33.755.581/0001-20",
+    "cache_date": "2025-07-06T15:00:31.857607",
+    "data": {
+      "nome": "XP INVESTOR LONG BIASED II FIC FI FINANCEIRO MULTIMERCADO RL",
+      "cnpj": "33755581000120",
+      "slug": "xp-investor-long-biased-ii-fic-fi-financeiro-multimercado-rl",
+      "url": "https://maisretorno.com/fundo/xp-investor-long-biased-ii-fic-fi-financeiro-multimercado-rl",
+      "rentabilidades": {
+        "2025": {},
+        "2024": {},
+        "2023": {},
+        "2022": {},
+        "2021": {},
+        "2020": {},
+        "2019": {}
+      },
+      "ultima_atualizacao": "2025-07-06T15:00:31.855611"
+    }
+  }
+}

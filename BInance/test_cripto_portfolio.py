@@ -5,13 +5,10 @@ Teste de Rentabilidade - Carteira de Criptomoedas
 
 Este script testa a rentabilidade de uma carteira de criptomoedas
 comparando com benchmarks tradicionais (CDI, Dólar, IBOV)
-Agora usando a classe MarketIndicesManager para buscar dados de mercado
 """
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -20,9 +17,6 @@ import json
 from typing import Dict, List
 import warnings
 warnings.filterwarnings('ignore')
-
-# Importar a classe MarketIndicesManager
-from core.market_indices import market_indices
 
 # Configuração da carteira de criptomoedas
 CRYPTO_PORTFOLIO = {
@@ -82,32 +76,94 @@ CRYPTO_PORTFOLIO = {
     }
 }
 
+# Função para buscar a cotação do dólar em tempo real
+def get_usd_brl_rate():
+    try:
+        response = requests.get('https://economia.awesomeapi.com.br/json/last/USD-BRL', timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            return float(data['USDBRL']['bid'])
+        else:
+            print('Erro ao buscar cotação do dólar. Usando valor padrão 5.43.')
+            return 5.43
+    except Exception as e:
+        print(f'Erro ao buscar cotação do dólar: {e}. Usando valor padrão 5.43.')
+        return 5.43
+
+def get_real_cdi_rate():
+    """Busca a taxa real do CDI via API do Banco Central do Brasil"""
+    try:
+        import requests
+        url = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados/ultimos/1?formato=json"
+        response = requests.get(url, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data and len(data) > 0:
+                daily_rate = float(data[0]['valor']) / 100
+                annual_rate = ((1 + daily_rate) ** 252) - 1
+                return {
+                    'daily_rate': daily_rate,
+                    'annual_rate': annual_rate,
+                    'daily_rate_pct': daily_rate * 100,
+                    'annual_rate_pct': annual_rate * 100,
+                    'date': data[0]['data'],
+                    'source': 'Banco Central do Brasil'
+                }
+    except Exception as e:
+        print(f"Erro ao buscar CDI real: {e}")
+    
+    # Fallback
+    return {
+        'daily_rate': 0.0004,
+        'annual_rate': 0.105,
+        'daily_rate_pct': 0.04,
+        'annual_rate_pct': 10.5,
+        'date': datetime.now().strftime('%d/%m/%Y'),
+        'source': 'Fallback'
+    }
+
 class CryptoPortfolioTester:
-    """Classe para testar rentabilidade da carteira de criptomoedas"""
+    """
+    Testador de portfólio de criptomoedas
+    """
     
     def __init__(self):
         self.base_url = "https://api.binance.com"
         self.portfolio_data = {}
-        # Usar a classe MarketIndicesManager para buscar câmbio
-        self.usd_brl_rate = market_indices.get_exchange_rate()['USD_BRL']
+        self.usd_brl_rate = get_usd_brl_rate()
         self.update_brl_values()
+        
+        # Informações do período de teste
+        self.test_period = {
+            'start_date': datetime.now().strftime('%d/%m/%Y'),
+            'end_date': datetime.now().strftime('%d/%m/%Y'),
+            'duration': 'Teste pontual (dados em tempo real)',
+            'data_source': 'Binance API'
+        }
+        
+        print(f"📅 PERÍODO DE TESTE: {self.test_period['start_date']} às {datetime.now().strftime('%H:%M:%S')}")
+        print(f"⏱️  DURAÇÃO: {self.test_period['duration']}")
+        print(f"🌐 FONTE DE DADOS: {self.test_period['data_source']}")
+        print("=" * 60)
         
     def update_brl_values(self):
         """Atualiza os valores em reais da carteira com base na cotação do dólar atual"""
-        # Atualizar câmbio antes de calcular
-        self.usd_brl_rate = market_indices.get_exchange_rate()['USD_BRL']
         for symbol, config in CRYPTO_PORTFOLIO.items():
             config['brl_value'] = round(config['usd_value'] * self.usd_brl_rate, 2)
         
     def get_crypto_price(self, symbol: str) -> float:
-        """Busca preço atual de uma criptomoeda usando MarketIndicesManager"""
+        """Busca preço atual de uma criptomoeda"""
         try:
-            # Usar a classe MarketIndicesManager para buscar preços
-            crypto_data = market_indices.get_crypto_prices([f"{symbol}USDT"])
-            if f"{symbol}USDT" in crypto_data:
-                return crypto_data[f"{symbol}USDT"]['price']
+            url = f"{self.base_url}/api/v3/ticker/price"
+            params = {"symbol": f"{symbol}USDT"}
+            response = requests.get(url, params=params, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                return float(data['price'])
             else:
-                print(f"Erro ao buscar preço de {symbol}: símbolo não encontrado")
+                print(f"Erro ao buscar preço de {symbol}: {response.status_code}")
                 return None
         except Exception as e:
             print(f"Erro ao buscar preço de {symbol}: {e}")
@@ -270,48 +326,31 @@ class CryptoPortfolioTester:
             return {}
     
     def compare_with_benchmarks(self) -> Dict:
-        """Compara performance da carteira com benchmarks usando dados históricos reais"""
+        """Compara performance da carteira com benchmarks"""
         try:
-            print("📊 Comparando com benchmarks usando dados históricos...")
+            print("📊 Comparando com benchmarks...")
             
-            # Usar o novo método para calcular métricas completas dos benchmarks
-            benchmarks = market_indices.calculate_benchmark_metrics(days=30)
+            # Buscar dados reais do CDI
+            cdi_data = get_real_cdi_rate()
             
-            # Se não conseguir dados históricos, usar dados atuais como fallback
-            if not benchmarks:
-                print("⚠️ Usando dados atuais como fallback...")
-                market_data = market_indices.get_all_market_data()
-                
-                # Obter dados do Ibovespa
-                ibov_data = market_data.get('stocks', {}).get('^BVSP', {})
-                ibov_change = ibov_data.get('change_24h', 0) / 100 if ibov_data else 0
-                
-                # Obter dados do S&P 500
-                sp500_data = market_data.get('stocks', {}).get('^GSPC', {})
-                sp500_change = sp500_data.get('change_24h', 0) / 100 if sp500_data else 0
-                
-                benchmarks = {
-                    'CDI': {
-                        'annual_return': 0.12,
-                        'volatility': 0.01,
-                        'description': 'Certificado de Depósito Interbancário (simulado)'
-                    },
-                    'USD': {
-                        'annual_return': 0.05,  # Valor padrão
-                        'volatility': 0.15,
-                        'description': 'Dólar Americano (simulado)'
-                    },
-                    'IBOV': {
-                        'annual_return': ibov_change * 365,
-                        'volatility': 0.20,
-                        'description': 'Índice Bovespa (dados atuais)'
-                    },
-                    'SP500': {
-                        'annual_return': sp500_change * 365,
-                        'volatility': 0.18,
-                        'description': 'S&P 500 (dados atuais)'
-                    }
+            # Dados dos benchmarks
+            benchmarks = {
+                'CDI': {
+                    'annual_return': cdi_data['annual_rate'],
+                    'volatility': 0.008,     # 0.8% volatilidade (baixa volatilidade do CDI)
+                    'description': f'Certificado de Depósito Interbancário ({cdi_data["source"]})'
+                },
+                'USD': {
+                    'annual_return': 0.05,  # 5% ao ano
+                    'volatility': 0.15,     # 15% volatilidade
+                    'description': 'Dólar Americano'
+                },
+                'IBOV': {
+                    'annual_return': 0.08,  # 8% ao ano
+                    'volatility': 0.20,     # 20% volatilidade
+                    'description': 'Índice Bovespa'
                 }
+            }
             
             # Calcular comparações
             portfolio_metrics = self.portfolio_data.get('metrics', {})
@@ -370,15 +409,10 @@ class CryptoPortfolioTester:
     
     def print_results(self):
         """Imprime resultados da análise"""
-        from datetime import datetime
         print("\n" + "="*60)
-        print("📊 RESULTADOS DA ANÁLISE DE RENTABILIDADE")
+        print("�� RESULTADOS DA ANÁLISE DE RENTABILIDADE")
         print("="*60)
-        
-        # Informações do período de análise
-        print(f"\n📅 PERÍODO DE ANÁLISE:")
-        print(f"Data da análise: {datetime.now().strftime('%d/%m/%Y às %H:%M')}")
-        print(f"Cotação USD/BRL utilizada: {self.usd_brl_rate:.2f}")
+        print(f"\nCotação USD/BRL utilizada: {self.usd_brl_rate:.2f}")
         
         # Configuração da carteira
         print("\n🎯 CONFIGURAÇÃO DA CARTEIRA:")
@@ -409,11 +443,7 @@ class CryptoPortfolioTester:
         # Comparação com benchmarks
         comparisons = self.compare_with_benchmarks()
         if comparisons:
-            print("\n📈 COMPARAÇÃO COM BENCHMARKS:")
-            # Mostrar período dos benchmarks se disponível
-            if comparisons and 'period_info' in list(comparisons.values())[0]:
-                period_info = list(comparisons.values())[0]['period_info']
-                print(f"📅 Período dos benchmarks: {period_info['period_description']}")
+            print("\n�� COMPARAÇÃO COM BENCHMARKS:")
             for benchmark, data in comparisons.items():
                 print(f"\n{benchmark} ({data['description']}):")
                 print(f"  Retorno Portfolio: {data['portfolio_return']:.2%}")
@@ -422,6 +452,7 @@ class CryptoPortfolioTester:
                 print(f"  Alpha: {data['alpha']:.3f}")
                 print(f"  Sharpe Portfolio: {data['portfolio_sharpe']:.3f}")
                 print(f"  Sharpe Benchmark: {data['benchmark_sharpe']:.3f}")
+        
         print("\n" + "="*60)
 
 def main():

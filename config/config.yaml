@@ -1,0 +1,179 @@
+# Configuração do Sistema de Análise Financeira
+# Versão: 2.0
+# Data: 02/07/2025
+
+# Configurações Gerais
+app:
+  name: "Sistema de Análise Financeira e Auditoria"
+  version: "2.0"
+  environment: "development"  # development, staging, production
+  debug: true
+  timezone: "America/Sao_Paulo"
+
+# Configurações de Cache
+cache:
+  duration: 300  # 5 minutos em segundos
+  max_size: 1000  # Máximo de itens no cache
+  cleanup_interval: 600  # Limpeza a cada 10 minutos
+  storage: "memory"  # memory, redis, memcached
+
+# Configurações de Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/app.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# APIs - Binance
+apis:
+  binance:
+    base_url: "https://api.binance.com"
+    api_key: ""  # Opcional para dados públicos
+    api_secret: ""  # Opcional para dados públicos
+    timeout: 10
+    rate_limit: 1200  # Requisições por minuto
+    symbols:
+      - "BTCUSDT"
+      - "ETHUSDT"
+      - "BNBUSDT"
+      - "ADAUSDT"
+      - "SOLUSDT"
+      - "XRPUSDT"
+      - "DOTUSDT"
+      - "USDCUSDT"
+
+# APIs - Yahoo Finance
+  yahoo:
+    timeout: 10
+    symbols:
+      stocks:
+        - "^BVSP"  # Ibovespa
+        - "^GSPC"  # S&P 500
+        - "^IXIC"  # NASDAQ
+        - "^DJI"   # Dow Jones
+        - "PETR4.SA"  # Petrobras
+        - "VALE3.SA"  # Vale
+      currencies:
+        - "USDBRL=X"
+        - "EURBRL=X"
+        - "GBPBRL=X"
+      commodities:
+        - "GC=F"  # Ouro
+        - "SI=F"  # Prata
+        - "CL=F"  # Petróleo
+
+# APIs - Exchange Rate
+  exchange_rate:
+    base_url: "https://api.exchangerate-api.com/v4/latest/USD"
+    timeout: 10
+    fallback_rates:
+      USD_BRL: 5.43
+      EUR_BRL: 5.9
+      GBP_BRL: 6.8
+
+# APIs - CVM
+  cvm:
+    base_url: "https://dados.cvm.gov.br"
+    timeout: 15
+    data_path: "CNPJ VALIDADO/transformados/"
+
+# Configurações de Análise
+analysis:
+  historical_days: 30
+  risk_free_rate: 0.12  # CDI anual
+  confidence_level: 0.95  # Para VaR
+  correlation_threshold: 0.7
+  volatility_window: 30
+
+# Configurações de Portfólio
+portfolio:
+  default_currencies:
+    - "USD"
+    - "BRL"
+  risk_metrics:
+    calculate_sharpe: true
+    calculate_var: true
+    calculate_max_drawdown: true
+    calculate_beta: true
+
+# Configurações de Relatórios
+reports:
+  output_dir: "reports/"
+  formats:
+    - "json"
+    - "csv"
+    - "xlsx"
+  auto_save: true
+  include_charts: true
+  include_metrics: true
+
+# Configurações de Dashboard
+dashboard:
+  streamlit:
+    port: 8501
+    host: "localhost"
+    theme: "light"
+  charts:
+    default_height: 400
+    default_width: 600
+    colors:
+      primary: "#1f77b4"
+      secondary: "#ff7f0e"
+      success: "#2ca02c"
+      danger: "#d62728"
+
+# Configurações de Testes
+testing:
+  mock_apis: false
+  test_data_dir: "tests/data/"
+  coverage_threshold: 80
+  timeout: 30
+
+# Configurações de Performance
+performance:
+  max_concurrent_requests: 10
+  request_timeout: 30
+  retry_attempts: 3
+  retry_delay: 1
+
+# Configurações de Segurança
+security:
+  validate_input: true
+  sanitize_data: true
+  log_sensitive_operations: false
+  api_key_rotation: false
+
+# Configurações de Monitoramento
+monitoring:
+  enabled: true
+  metrics_interval: 60  # segundos
+  alert_thresholds:
+    error_rate: 0.05
+    response_time: 5.0
+    cache_hit_rate: 0.8
+
+# Configurações de Backup
+backup:
+  enabled: true
+  frequency: "daily"
+  retention_days: 30
+  include_reports: true
+  include_logs: true
+
+# Configurações de Notificações
+notifications:
+  email:
+    enabled: false
+    smtp_server: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    recipients: []
+  webhook:
+    enabled: false
+    url: ""
+    events:
+      - "error"
+      - "warning"
+      - "success" 

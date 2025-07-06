@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-07-06T11:03:05.320281",
+  "market_summary": {
+    "timestamp": "06/07/2025 11:03:05",
+    "exchange_rate_usd_brl": 5.421199798583984,
+    "bitcoin_price_brl": 589981.584400177,
+    "bitcoin_change_24h": 0.603,
+    "ibovespa_price": 141478.0,
+    "ibovespa_change_24h": 0.39027020890099906,
+    "sp500_price": 6279.35009765625,
+    "sp500_change_24h": 0.833895520660737,
+    "gold_price_brl": 18142.045125961304,
+    "gold_change_24h": 0.0
+  },
+  "crypto_analysis": {
+    "timestamp": "2025-07-06T11:03:05.320281",
+    "total_value_usd": 22345.519,
+    "total_value_brl": 121139.5231020546,
+    "assets": {
+      "BTC": {
+        "quantity": 0.1,
+        "entry_price": 45000,
+        "current_price": 108816.69,
+        "current_value_usd": 10881.669000000002,
+        "current_value_brl": 58991.701791057596,
+        "profit_loss_usd": 6381.669000000002,
+        "profit_loss_pct": 141.8148666666667
+      },
+      "ETH": {
+        "quantity": 2.0,
+        "entry_price": 2800,
+        "current_price": 2559.5,
+        "current_value_usd": 5119.0,
+        "current_value_brl": 27751.121768951416,
+        "profit_loss_usd": -481.0,
+        "profit_loss_pct": -8.589285714285715
+      },
+      "BNB": {
+        "quantity": 5.0,
+        "entry_price": 300,
+        "current_price": 662.61,
+        "current_value_usd": 3313.05,
+        "current_value_brl": 17960.70599269867,
+        "profit_loss_usd": 1813.0500000000002,
+        "profit_loss_pct": 120.87
+      },
+      "SOL": {
+        "quantity": 20.0,
+        "entry_price": 100,
+        "current_price": 151.59,
+        "current_value_usd": 3031.8,
+        "current_value_brl": 16435.993549346924,
+        "profit_loss_usd": 1031.8000000000002,
+        "profit_loss_pct": 51.59000000000001
+      }
+    },
+    "performance": {
+      "total_return_usd": 8745.519,
+      "total_return_pct": 64.30528676470588,
+      "total_entry_value": 13600.0
+    },
+    "risk_metrics": {}
+  },
+  "stock_analysis": {
+    "timestamp": "2025-07-06T11:03:08.149545",
+    "total_value_brl": 147449.99993133545,
+    "assets": {
+      "PETR4.SA": {
+        "quantity": 100,
+        "entry_price": 30.0,
+        "current_price": 32.119998931884766,
+        "current_value": 3211.9998931884766,
+        "profit_loss": 211.99989318847656,
+        "profit_loss_pct": 7.066663106282552,
+        "name": "Petróleo Brasileiro S.A. - Petrobras"
+      },
+      "VALE3.SA": {
+        "quantity": 50,
+        "entry_price": 70.0,
+        "current_price": 55.20000076293945,
+        "current_value": 2760.0000381469727,
+        "profit_loss": -739.9999618530273,
+        "profit_loss_pct": -21.142856052943635,
+        "name": "Vale S.A."
+      },
+      "^BVSP": {
+        "quantity": 1,
+        "entry_price": 130000,
+        "current_price": 141478.0,
+        "current_value": 141478.0,
+        "profit_loss": 11478.0,
+        "profit_loss_pct": 8.82923076923077,
+        "name": "IBOVESPA"
+      }
+    },
+    "performance": {},
+    "benchmark_comparison": {
+      "ibovespa_price": 141478.0,
+      "ibovespa_change_24h": 0.39027020890099906
+    }
+  },
+  "risk_metrics": {
+    "crypto": {
+      "volatility": 0.2,
+      "sharpe_ratio": 2.615264338235294,
+      "var_95": 39854.90310057597,
+      "max_drawdown": -0.2,
+      "beta": 1.2
+    },
+    "stocks": {
+      "volatility": 0.2,
+      "sharpe_ratio": -0.6,
+      "var_95": 48511.04997740937,
+      "max_drawdown": -0.2,
+      "beta": 1.2
+    }
+  },
+  "recommendations": []
+}

@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-07-06T11:20:18.976378",
+  "resumo_geral": {
+    "valor_total": 80000.0,
+    "retorno_total": 0.1176,
+    "num_fundos": 2,
+    "diversificacao": 0.75
+  },
+  "criptomoedas": {
+    "ativos": [
+      {
+        "symbol": "BTC",
+        "valor": 25000.0,
+        "retorno": 0.25
+      },
+      {
+        "symbol": "ETH",
+        "valor": 15000.0,
+        "retorno": 0.18
+      }
+    ],
+    "total_value": 40000.0
+  },
+  "acoes": {
+    "ativos": [
+      {
+        "symbol": "PETR4",
+        "valor": 20000.0,
+        "retorno": 0.12
+      },
+      {
+        "symbol": "VALE3",
+        "valor": 15000.0,
+        "retorno": 0.08
+      }
+    ],
+    "total_value": 35000.0
+  },
+  "fundos": {
+    "fundos": [
+      {
+        "nome": "Fund Test 1",
+        "cnpj": "00.000.000/0001-00",
+        "categoria": "Renda Variável",
+        "retorno_anual": 0.15,
+        "volatilidade": 0.12,
+        "sharpe_ratio": 1.25,
+        "valor_atual": 50000.0,
+        "valor_inicial": 45000.0
+      },
+      {
+        "nome": "Fund Test 2",
+        "cnpj": "00.000.000/0002-00",
+        "categoria": "Renda Fixa",
+        "retorno_anual": 0.08,
+        "volatilidade": 0.05,
+        "sharpe_ratio": 1.6,
+        "valor_atual": 30000.0,
+        "valor_inicial": 28000.0
+      }
+    ],
+    "metrics": {
+      "total_value": 80000.0,
+      "total_return": 0.1176,
+      "avg_volatility": 0.085,
+      "avg_sharpe": 1.425,
+      "diversification_score": 0.75
+    }
+  },
+  "recomendacoes": [
+    "Diversificar mais em fundos de renda fixa para reduzir volatilidade",
+    "Considerar aumentar exposição em fundos de renda variável para maior retorno",
+    "Monitorar performance dos fundos mensalmente"
+  ]
+}

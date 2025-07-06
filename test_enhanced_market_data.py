@@ -20,6 +20,9 @@ def test_historical_data():
     print("=" * 80)
     print("TESTE DE DADOS HISTÓRICOS")
     print("=" * 80)
+    print(f"📅 PERÍODO DE TESTE: {datetime.now().strftime('%d/%m/%Y às %H:%M:%S')}")
+    print(f"⏱️  DURAÇÃO: Últimos 30 dias (dados históricos)")
+    print("=" * 80)
     
     try:
         # 1. Teste de dados históricos do dólar
@@ -77,6 +80,9 @@ def test_benchmark_metrics():
     print("\n" + "=" * 80)
     print("TESTE DE MÉTRICAS DOS BENCHMARKS")
     print("=" * 80)
+    print(f"📅 PERÍODO DE TESTE: {datetime.now().strftime('%d/%m/%Y às %H:%M:%S')}")
+    print(f"⏱️  DURAÇÃO: Últimos 30 dias (dados históricos)")
+    print("=" * 80)
     
     try:
         # Calcular métricas completas dos benchmarks
@@ -118,6 +124,9 @@ def test_enhanced_market_summary():
     
     print("\n" + "=" * 80)
     print("TESTE DE RESUMO COMPLETO DE MERCADO")
+    print("=" * 80)
+    print(f"📅 PERÍODO DE TESTE: {datetime.now().strftime('%d/%m/%Y às %H:%M:%S')}")
+    print(f"⏱️  DURAÇÃO: Últimos 30 dias (dados históricos)")
     print("=" * 80)
     
     try:

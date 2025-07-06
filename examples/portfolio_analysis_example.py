@@ -253,6 +253,15 @@ class PortfolioAnalyzer:
         print(f"Bitcoin: R$ {market_summary.get('bitcoin_price_brl', 0):,.2f} ({market_summary.get('bitcoin_change_24h', 0):+.2f}%)")
         print(f"Ibovespa: {market_summary.get('ibovespa_price', 0):,.2f} ({market_summary.get('ibovespa_change_24h', 0):+.2f}%)")
         
+        # Resumo do portfólio
+        portfolio_summary = report.get('portfolio_summary', {})
+        if portfolio_summary:
+            print(f"\n💰 RESUMO DO PORTFÓLIO:")
+            print(f"Valor Total: R$ {portfolio_summary.get('total_value_brl', 0):,.2f}")
+            print(f"  Criptomoedas: R$ {portfolio_summary.get('crypto_value', 0):,.2f} ({portfolio_summary.get('crypto_weight', 0):.1%})")
+            print(f"  Ações: R$ {portfolio_summary.get('stock_value', 0):,.2f} ({portfolio_summary.get('stock_weight', 0):.1%})")
+            print(f"  Fundos: R$ {portfolio_summary.get('fund_value', 0):,.2f} ({portfolio_summary.get('fund_weight', 0):.1%})")
+        
         # Análise de criptomoedas
         crypto_analysis = report.get('crypto_analysis')
         if crypto_analysis:
@@ -272,6 +281,22 @@ class PortfolioAnalyzer:
             for symbol, data in stock_analysis.get('assets', {}).items():
                 print(f"  {symbol}: R$ {data['current_value']:,.2f} ({data['profit_loss_pct']:+.2f}%)")
         
+        # Análise de fundos
+        fund_analysis = report.get('fund_analysis')
+        if fund_analysis:
+            print(f"\n🏦 ANÁLISE DE FUNDOS:")
+            print(f"Valor Total: R$ {fund_analysis.get('metrics', {}).get('total_value', 0):,.2f}")
+            print(f"Retorno Total: {fund_analysis.get('metrics', {}).get('total_return', 0):.2%}")
+            print(f"Volatilidade Média: {fund_analysis.get('metrics', {}).get('avg_volatility', 0):.2%}")
+            print(f"Sharpe Ratio Médio: {fund_analysis.get('metrics', {}).get('avg_sharpe', 0):.2f}")
+            
+            for fund in fund_analysis.get('fundos', []):
+                print(f"  {fund['nome']} ({fund['categoria']}):")
+                print(f"    CNPJ: {fund['cnpj']}")
+                print(f"    Valor: R$ {fund['valor_atual']:,.2f}")
+                print(f"    Retorno: {fund['retorno_anual']:.2%}")
+                print(f"    Sharpe: {fund['sharpe_ratio']:.2f}")
+        
         # Métricas de risco
         risk_metrics = report.get('risk_metrics', {})
         if risk_metrics:
@@ -290,6 +315,107 @@ class PortfolioAnalyzer:
                 print(f"  {i}. {rec}")
         
         print("\n" + "="*80)
+    
+    def analyze_funds(self) -> dict:
+        """
+        Analisa um portfólio de fundos de investimento
+        
+        Returns:
+            dict: Análise dos fundos com métricas e performance
+        """
+        print(f"\n🏦 Analisando portfólio de fundos...")
+        
+        # Dados simulados de fundos (substituir por dados reais da CVM)
+        fund_portfolio = {
+            'fundos': [
+                {
+                    'nome': 'Fund Test 1',
+                    'cnpj': '00.000.000/0001-00',
+                    'categoria': 'Renda Variável',
+                    'retorno_anual': 0.15,
+                    'volatilidade': 0.12,
+                    'sharpe_ratio': 1.25,
+                    'valor_atual': 50000.0,
+                    'valor_inicial': 45000.0
+                },
+                {
+                    'nome': 'Fund Test 2',
+                    'cnpj': '00.000.000/0002-00',
+                    'categoria': 'Renda Fixa',
+                    'retorno_anual': 0.08,
+                    'volatilidade': 0.05,
+                    'sharpe_ratio': 1.60,
+                    'valor_atual': 30000.0,
+                    'valor_inicial': 28000.0
+                }
+            ],
+            'metrics': {
+                'total_value': 80000.0,
+                'total_return': 0.1176,  # 11.76%
+                'avg_volatility': 0.085,
+                'avg_sharpe': 1.425,
+                'diversification_score': 0.75
+            }
+        }
+        
+        return fund_portfolio
+    
+    def generate_unified_report(self) -> dict:
+        """
+        Gera relatório unificado com todas as análises
+        
+        Returns:
+            dict: Relatório completo com criptomoedas, ações e fundos
+        """
+        print(f"\n📋 Gerando relatório unificado...")
+        
+        report = {
+            'timestamp': datetime.now().isoformat(),
+            'resumo_geral': {},
+            'criptomoedas': {},
+            'acoes': {},
+            'fundos': {},
+            'recomendacoes': []
+        }
+        
+        # Análise de fundos
+        fund_analysis = self.analyze_funds()
+        report['fundos'] = fund_analysis
+        
+        # Resumo geral
+        total_value = fund_analysis.get('metrics', {}).get('total_value', 0)
+        report['resumo_geral'] = {
+            'valor_total': total_value,
+            'retorno_total': fund_analysis.get('metrics', {}).get('total_return', 0),
+            'num_fundos': len(fund_analysis.get('fundos', [])),
+            'diversificacao': fund_analysis.get('metrics', {}).get('diversification_score', 0)
+        }
+        
+        # Dados simulados para criptomoedas e ações
+        report['criptomoedas'] = {
+            'ativos': [
+                {'symbol': 'BTC', 'valor': 25000.0, 'retorno': 0.25},
+                {'symbol': 'ETH', 'valor': 15000.0, 'retorno': 0.18}
+            ],
+            'total_value': 40000.0
+        }
+        
+        report['acoes'] = {
+            'ativos': [
+                {'symbol': 'PETR4', 'valor': 20000.0, 'retorno': 0.12},
+                {'symbol': 'VALE3', 'valor': 15000.0, 'retorno': 0.08}
+            ],
+            'total_value': 35000.0
+        }
+        
+        # Recomendações
+        report['recomendacoes'] = [
+            "Diversificar mais em fundos de renda fixa para reduzir volatilidade",
+            "Considerar aumentar exposição em fundos de renda variável para maior retorno",
+            "Monitorar performance dos fundos mensalmente"
+        ]
+        
+        return report
 
 def main():
     """Função principal com exemplo de uso"""
@@ -315,11 +441,35 @@ def main():
         '^BVSP': {'quantity': 1, 'entry_price': 130000}  # ETF do Ibovespa
     }
     
-    # Gerar relatório completo
+    # Gerar relatório completo com fundos
+    print("\n📊 Gerando relatório completo incluindo fundos...")
+    
+    # Análise de criptomoedas e ações
     report = analyzer.generate_comprehensive_report(
         crypto_portfolio=crypto_portfolio,
         stock_portfolio=stock_portfolio
     )
+    
+    # Adicionar análise de fundos
+    fund_analysis = analyzer.analyze_funds()
+    report['fund_analysis'] = fund_analysis
+    
+    # Calcular valor total do portfólio
+    crypto_value = report.get('crypto_analysis', {}).get('total_value_brl', 0)
+    stock_value = report.get('stock_analysis', {}).get('total_value_brl', 0)
+    fund_value = fund_analysis.get('metrics', {}).get('total_value', 0)
+    total_portfolio_value = crypto_value + stock_value + fund_value
+    
+    # Adicionar resumo geral
+    report['portfolio_summary'] = {
+        'total_value_brl': total_portfolio_value,
+        'crypto_value': crypto_value,
+        'stock_value': stock_value,
+        'fund_value': fund_value,
+        'crypto_weight': crypto_value / total_portfolio_value if total_portfolio_value > 0 else 0,
+        'stock_weight': stock_value / total_portfolio_value if total_portfolio_value > 0 else 0,
+        'fund_weight': fund_value / total_portfolio_value if total_portfolio_value > 0 else 0
+    }
     
     # Imprimir análise
     analyzer.print_analysis(report)

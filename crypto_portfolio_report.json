@@ -1,81 +1,78 @@
 {
-  "timestamp": "2025-07-02T23:52:50.822264",
-  "usd_brl_rate": 5.426499843597412,
+  "timestamp": "2025-07-06T11:24:12.942759",
+  "usd_brl_rate": 5.4136,
   "portfolio_config": {
     "USDT": {
       "allocation": 0.2,
-      "brl_value": 21706.0,
+      "brl_value": 21654.4,
       "usd_value": 4000,
       "justification": "Reserva estável e líquida"
     },
     "BTC": {
       "allocation": 0.2,
-      "brl_value": 21706.0,
+      "brl_value": 21654.4,
       "usd_value": 4000,
       "justification": "Ativo principal do setor"
     },
     "ETH": {
       "allocation": 0.15,
-      "brl_value": 16279.5,
+      "brl_value": 16240.8,
       "usd_value": 3000,
       "justification": "Segunda maior criptomoeda"
     },
     "BNB": {
       "allocation": 0.1,
-      "brl_value": 10853.0,
+      "brl_value": 10827.2,
       "usd_value": 2000,
       "justification": "Alta liquidez, uso em Binance"
     },
     "SOL": {
       "allocation": 0.1,
-      "brl_value": 10853.0,
+      "brl_value": 10827.2,
       "usd_value": 2000,
       "justification": "Protocolo em crescimento"
     },
     "XRP": {
       "allocation": 0.075,
-      "brl_value": 8139.75,
+      "brl_value": 8120.4,
       "usd_value": 1500,
       "justification": "Boa liquidez e utilidade"
     },
     "ADA": {
       "allocation": 0.075,
-      "brl_value": 8139.75,
+      "brl_value": 8120.4,
       "usd_value": 1500,
       "justification": "Protocolo consolidado"
     },
     "DOT": {
       "allocation": 0.05,
-      "brl_value": 5426.5,
+      "brl_value": 5413.6,
       "usd_value": 1000,
       "justification": "Expansão de ecossistema"
     },
     "USDC": {
       "allocation": 0.05,
-      "brl_value": 5426.5,
+      "brl_value": 5413.6,
       "usd_value": 1000,
       "justification": "Diversificação em stablecoins"
     }
   },
   "portfolio_data": {
     "current_prices": {
-      "BTC": 108616.02,
-      "ETH": 2562.75,
-      "BNB": 658.8,
-      "SOL": 152.35,
-      "XRP": 2.2399,
-      "ADA": 0.5843,
-      "DOT": 3.548,
+      "BTC": 108838.01,
+      "ETH": 2555.0,
+      "BNB": 661.32,
+      "SOL": 151.22,
+      "XRP": 2.2695,
+      "ADA": 0.5829,
+      "DOT": 3.392,
       "USDT": 1.0,
       "USDC": 1.0
     },
-    "current_portfolio_value": 2408212.4036989496,
+    "current_portfolio_value": 2407183.1743921596,
     "returns_data": {
       "BTC": [
         0.0,
-        -0.030451534076571196,
-        0.027384456186406947,
-        0.012117450409652175,
         0.0017228450581063814,
         0.042834093101556725,
         0.00010311707406529536,
@@ -101,13 +98,13 @@
         -0.011170766835125301,
         -0.013676228341569674,
         0.02998131927797143,
-        -0.0021870544310682583
+        0.006754090047184302,
+        -0.014605495398174795,
+        0.001980659399927198,
+        0.005914058395839028
       ],
       "ETH": [
         0.0,
-        -0.0742690820959625,
-        0.02572068881239087,
-        0.019599369976980086,
         -0.005862245160677126,
         0.06785320121283123,
         0.05084454858532972,
@@ -133,13 +130,13 @@
         -0.005847789479578869,
         -0.03237214691788659,
         0.06877310281454108,
-        -0.00298006932746131
+        0.00810765597706209,
+        -0.03211191509889055,
+        0.0033372673482081616,
+        0.01533533883588123
       ],
       "BNB": [
         0.0,
-        -0.0450974774964944,
-        0.014810838122907732,
-        0.012634199470981766,
         0.0018130973233765335,
         0.020828220858895685,
         0.011914420505423795,
@@ -165,13 +162,13 @@
         0.0030539013589860886,
         -0.016090729182523855,
         0.020701499234137444,
-        -0.0013945521517031434
+        0.005881372118051953,
+        -0.015054476408625783,
+        0.003916768665850556,
+        0.007863935625457286
       ],
       "SOL": [
         0.0,
-        -0.05852799164817957,
-        0.024533924734909007,
-        0.015084894811607796,
         0.015926962548313828,
         0.05713348638898008,
         0.024571854058079046,
@@ -197,13 +194,13 @@
         0.009718236368379873,
         -0.05122408113170984,
         0.036696623093682046,
-        0.00039403690812367387
+        0.0005910553621855108,
+        -0.030585455500131475,
+        -0.0010155721056193112,
+        0.02487292443239575
       ],
       "XRP": [
         0.0,
-        -0.048752782952428575,
-        0.03162017577378684,
-        0.007917399759236776,
         0.04138913133354771,
         0.023864137626819604,
         -0.005902373874456135,
@@ -229,13 +226,13 @@
         0.013643987126603419,
         -0.028709417762275313,
         0.028360957642725504,
-        0.002865329512893977
+        0.010431590257879542,
+        -0.016128317603792852,
+        -0.0012159423553252946,
+        0.02335647939399399
       ],
       "ADA": [
         0.0,
-        -0.05981364592726168,
-        0.04763427109974416,
-        0.013884650595056502,
         0.008728367193378439,
         0.05161867820378929,
         0.016739963115335543,
@@ -261,13 +258,13 @@
         -0.008834228304174574,
         -0.05277874868926946,
         0.07749077490774892,
-        0.00068493150684934
+        0.026027397260274032,
+        -0.0447263017356474,
+        0.00541579315164209,
+        0.012858384013900936
       ],
       "DOT": [
         0.0,
-        -0.04792810783824264,
-        0.018353434714210692,
-        0.037847579814624055,
         -0.0014884644008928971,
         0.03130434782608682,
         0.034449530233678693,
@@ -293,7 +290,10 @@
         -0.0406664783959334,
         -0.03414777745069164,
         0.08046327339225834,
-        0.0008462623413258985
+        -0.001692524682651575,
+        -0.051144391070924056,
+        -0.0005955926146516966,
+        0.010727056019070424
       ]
     },
     "metrics": {
@@ -305,65 +305,43 @@
     },
     "summary": {
       "total_allocation": 1.0,
-      "total_brl_value": 108530.0,
+      "total_brl_value": 108272.0,
       "total_usd_value": 20000
     }
   },
   "benchmark_comparisons": {
-    "USD": {
-      "benchmark_return": -0.6166130980485051,
+    "CDI": {
+      "benchmark_return": 0.14899981434569276,
       "portfolio_return": 0.18,
-      "benchmark_volatility": 0.09987343201932769,
+      "benchmark_volatility": 0.008,
       "portfolio_volatility": 0.25,
       "portfolio_sharpe": 0.72,
-      "benchmark_sharpe": -6.1739452182756365,
-      "beta": 2.503168209455539,
-      "alpha": 1.7234863045689093,
-      "description": "Dólar Americano (dados históricos)"
+      "benchmark_sharpe": 18.624976793211594,
+      "beta": 31.25,
+      "alpha": -4.476244198302899,
+      "description": "Certificado de Depósito Interbancário (Banco Central do Brasil)"
+    },
+    "USD": {
+      "benchmark_return": 0.05,
+      "portfolio_return": 0.18,
+      "benchmark_volatility": 0.15,
+      "portfolio_volatility": 0.25,
+      "portfolio_sharpe": 0.72,
+      "benchmark_sharpe": 0.33333333333333337,
+      "beta": 1.6666666666666667,
+      "alpha": 0.09666666666666665,
+      "description": "Dólar Americano"
     },
     "IBOV": {
-      "benchmark_return": 0.10324120074556323,
+      "benchmark_return": 0.08,
       "portfolio_return": 0.18,
-      "benchmark_volatility": 0.10949675595011775,
+      "benchmark_volatility": 0.2,
       "portfolio_volatility": 0.25,
       "portfolio_sharpe": 0.72,
-      "benchmark_sharpe": 0.9428699494311567,
-      "beta": 2.2831726641644963,
-      "alpha": -0.05571748735778917,
-      "description": "Índice Bovespa (dados históricos)"
-    },
-    "SP500": {
-      "benchmark_return": 0.5877232090383923,
-      "portfolio_return": 0.18,
-      "benchmark_volatility": 0.11914463104746482,
-      "portfolio_volatility": 0.25,
-      "portfolio_sharpe": 0.72,
-      "benchmark_sharpe": 4.932855168305949,
-      "beta": 2.0982901017201945,
-      "alpha": -1.0532137920764872,
-      "description": "S&P 500 (dados históricos)"
-    },
-    "BTC": {
-      "benchmark_return": 0.45896317142053833,
-      "portfolio_return": 0.18,
-      "benchmark_volatility": 0.28852237348504295,
-      "portfolio_volatility": 0.25,
-      "portfolio_sharpe": 0.72,
-      "benchmark_sharpe": 1.5907368495439438,
-      "beta": 0.8664839297565256,
-      "alpha": -0.21768421238598595,
-      "description": "Bitcoin (dados históricos)"
-    },
-    "CDI": {
-      "benchmark_return": 0.12,
-      "portfolio_return": 0.18,
-      "benchmark_volatility": 0.01,
-      "portfolio_volatility": 0.25,
-      "portfolio_sharpe": 0.72,
-      "benchmark_sharpe": 12.0,
-      "beta": 25.0,
-      "alpha": -2.82,
-      "description": "Certificado de Depósito Interbancário (simulado)"
+      "benchmark_sharpe": 0.39999999999999997,
+      "beta": 1.25,
+      "alpha": 0.07999999999999999,
+      "description": "Índice Bovespa"
     }
   }
 }

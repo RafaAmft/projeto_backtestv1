@@ -759,15 +759,21 @@ class MarketIndicesManager:
                     'period_info': period_info
                 }
             
-            # 5. CDI (simulado - baseado em dados reais)
-            cdi_rate = 0.12  # 12% ao ano
+            # 5. CDI (dados reais via API do Banco Central)
+            cdi_data = self.get_cdi_rate()
+            cdi_annual_rate = cdi_data['annual_rate']
+            cdi_daily_rate = cdi_data['daily_rate']
+            
             benchmarks['CDI'] = {
-                'annual_return': cdi_rate,
-                'volatility': 0.01,  # 1% volatilidade
-                'max_drawdown': -0.001,  # Mínimo drawdown
-                'sharpe_ratio': cdi_rate / 0.01,  # Sharpe alto
-                'description': 'Certificado de Depósito Interbancário (simulado)',
-                'current_rate': cdi_rate / 365,  # Taxa diária
+                'annual_return': cdi_annual_rate,
+                'volatility': 0.008,  # 0.8% volatilidade (baixa volatilidade do CDI)
+                'max_drawdown': -0.0005,  # Mínimo drawdown
+                'sharpe_ratio': cdi_annual_rate / 0.008,  # Sharpe alto
+                'description': f'Certificado de Depósito Interbancário (dados reais - {cdi_data["source"]})',
+                'current_rate': cdi_daily_rate,  # Taxa diária real
+                'current_rate_pct': cdi_data['daily_rate_pct'],
+                'annual_rate_pct': cdi_data['annual_rate_pct'],
+                'date': cdi_data['date'],
                 'period_info': period_info
             }
             
@@ -819,6 +825,299 @@ class MarketIndicesManager:
             return sharpe
         except Exception:
             return 0
+    
+    def get_cdi_rate(self, force_update: bool = False) -> Dict[str, Any]:
+        """
+        Busca a taxa do CDI em tempo real via API do Banco Central do Brasil
+        
+        Returns:
+            dict: Dados do CDI incluindo taxa diária e anualizada
+        """
+        cache_key = "cdi_rate"
+        
+        if not force_update and self._is_cache_valid(cache_key):
+            return self.cache[cache_key]
+        
+        try:
+            # API do Banco Central do Brasil - Série 12 (CDI)
+            url = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados/ultimos/1?formato=json"
+            
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            if data and len(data) > 0:
+                # Converter taxa diária para anual
+                daily_rate = float(data[0]['valor']) / 100  # Converter de % para decimal
+                annual_rate = ((1 + daily_rate) ** 252) - 1  # 252 dias úteis no ano
+                
+                cdi_data = {
+                    'daily_rate': daily_rate,
+                    'annual_rate': annual_rate,
+                    'daily_rate_pct': daily_rate * 100,
+                    'annual_rate_pct': annual_rate * 100,
+                    'date': data[0]['data'],
+                    'source': 'Banco Central do Brasil',
+                    'timestamp': self._format_brazilian_datetime()
+                }
+                
+                self._update_cache(cache_key, cdi_data)
+                logger.info(f"Taxa do CDI atualizada: {cdi_data['daily_rate_pct']:.4f}% ao dia ({cdi_data['annual_rate_pct']:.2f}% ao ano)")
+                return cdi_data
+            else:
+                raise ValueError("Dados do CDI não encontrados na API")
+                
+        except Exception as e:
+            logger.error(f"Erro ao buscar taxa do CDI: {e}")
+            # Retornar dados de fallback
+            fallback_data = {
+                'daily_rate': 0.0004,  # 0.04% ao dia (aproximado)
+                'annual_rate': 0.105,  # 10.5% ao ano (aproximado)
+                'daily_rate_pct': 0.04,
+                'annual_rate_pct': 10.5,
+                'date': datetime.now().strftime('%d/%m/%Y'),
+                'source': 'Fallback (dados aproximados)',
+                'timestamp': self._format_brazilian_datetime()
+            }
+            return fallback_data
+
+    def get_historical_analysis_periods(self) -> Dict[str, Dict]:
+        """
+        Define os períodos de análise temporal
+        """
+        now = datetime.now()
+        
+        periods = {
+            '1_month': {
+                'days': 30,
+                'description': 'Último mês',
+                'start_date': (now - timedelta(days=30)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            },
+            '3_months': {
+                'days': 90,
+                'description': 'Últimos 3 meses',
+                'start_date': (now - timedelta(days=90)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            },
+            '6_months': {
+                'days': 180,
+                'description': 'Últimos 6 meses',
+                'start_date': (now - timedelta(days=180)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            },
+            '1_year': {
+                'days': 365,
+                'description': 'Último ano',
+                'start_date': (now - timedelta(days=365)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            },
+            '3_years': {
+                'days': 1095,
+                'description': 'Últimos 3 anos',
+                'start_date': (now - timedelta(days=1095)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            },
+            '5_years': {
+                'days': 1825,
+                'description': 'Últimos 5 anos',
+                'start_date': (now - timedelta(days=1825)).strftime('%d/%m/%Y'),
+                'end_date': now.strftime('%d/%m/%Y')
+            }
+        }
+        
+        return periods
+
+    def get_monthly_returns(self, symbol: str, months: int = 60) -> Dict[str, Any]:
+        """
+        Calcula retornos mensais para os últimos N meses
+        
+        Args:
+            symbol: Símbolo do ativo
+            months: Número de meses (padrão: 60 = 5 anos)
+        """
+        try:
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=months * 30)
+            
+            # Buscar dados históricos
+            if 'USDT' in symbol:  # Criptomoeda
+                data = self.get_historical_crypto_data(symbol.replace('USDT', ''), months * 30)
+            elif symbol in ['^BVSP', '^GSPC', '^IXIC', '^DJI']:  # Índice
+                data = self.get_historical_stock_data(symbol, months * 30)
+            else:  # Ação
+                data = self.get_historical_stock_data(symbol, months * 30)
+            
+            if not data or 'prices' not in data:
+                return {}
+            
+            # Calcular retornos mensais
+            prices = data['prices']
+            dates = data['dates']
+            
+            monthly_returns = []
+            monthly_dates = []
+            
+            for i in range(0, len(prices), 30):  # Agrupar por mês
+                if i + 30 < len(prices):
+                    start_price = prices[i]
+                    end_price = prices[i + 30]
+                    monthly_return = (end_price - start_price) / start_price
+                    monthly_returns.append(monthly_return)
+                    monthly_dates.append(dates[i])
+            
+            return {
+                'symbol': symbol,
+                'monthly_returns': monthly_returns,
+                'monthly_dates': monthly_dates,
+                'total_months': len(monthly_returns),
+                'avg_monthly_return': np.mean(monthly_returns) if monthly_returns else 0,
+                'monthly_volatility': np.std(monthly_returns) if monthly_returns else 0,
+                'best_month': max(monthly_returns) if monthly_returns else 0,
+                'worst_month': min(monthly_returns) if monthly_returns else 0
+            }
+            
+        except Exception as e:
+            logger.error(f"Erro ao calcular retornos mensais para {symbol}: {e}")
+            return {}
+
+    def get_annual_returns(self, symbol: str, years: int = 5) -> Dict[str, Any]:
+        """
+        Calcula retornos anuais para os últimos N anos
+        
+        Args:
+            symbol: Símbolo do ativo
+            years: Número de anos (padrão: 5)
+        """
+        try:
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=years * 365)
+            
+            # Buscar dados históricos
+            if 'USDT' in symbol:  # Criptomoeda
+                data = self.get_historical_crypto_data(symbol.replace('USDT', ''), years * 365)
+            elif symbol in ['^BVSP', '^GSPC', '^IXIC', '^DJI']:  # Índice
+                data = self.get_historical_stock_data(symbol, years * 365)
+            else:  # Ação
+                data = self.get_historical_stock_data(symbol, years * 365)
+            
+            if not data or 'prices' not in data:
+                return {}
+            
+            # Calcular retornos anuais
+            prices = data['prices']
+            dates = data['dates']
+            
+            annual_returns = []
+            annual_dates = []
+            
+            for i in range(0, len(prices), 365):  # Agrupar por ano
+                if i + 365 < len(prices):
+                    start_price = prices[i]
+                    end_price = prices[i + 365]
+                    annual_return = (end_price - start_price) / start_price
+                    annual_returns.append(annual_return)
+                    annual_dates.append(dates[i])
+            
+            return {
+                'symbol': symbol,
+                'annual_returns': annual_returns,
+                'annual_dates': annual_dates,
+                'total_years': len(annual_returns),
+                'avg_annual_return': np.mean(annual_returns) if annual_returns else 0,
+                'annual_volatility': np.std(annual_returns) if annual_returns else 0,
+                'best_year': max(annual_returns) if annual_returns else 0,
+                'worst_year': min(annual_returns) if annual_returns else 0
+            }
+            
+        except Exception as e:
+            logger.error(f"Erro ao calcular retornos anuais para {symbol}: {e}")
+            return {}
+
+    def generate_temporal_analysis(self, symbols: List[str], period: str = '5_years') -> Dict[str, Any]:
+        """
+        Gera análise temporal completa para múltiplos ativos
+        
+        Args:
+            symbols: Lista de símbolos para analisar
+            period: Período de análise ('1_month', '3_months', '6_months', '1_year', '3_years', '5_years')
+        """
+        try:
+            periods = self.get_historical_analysis_periods()
+            period_info = periods.get(period, periods['5_years'])
+            
+            analysis = {
+                'period_info': period_info,
+                'analysis_date': datetime.now().strftime('%d/%m/%Y às %H:%M:%S'),
+                'monthly_analysis': {},
+                'annual_analysis': {},
+                'summary': {}
+            }
+            
+            # Análise mensal
+            for symbol in symbols:
+                monthly_data = self.get_monthly_returns(symbol, period_info['days'] // 30)
+                if monthly_data:
+                    analysis['monthly_analysis'][symbol] = monthly_data
+            
+            # Análise anual
+            for symbol in symbols:
+                annual_data = self.get_annual_returns(symbol, period_info['days'] // 365)
+                if annual_data:
+                    analysis['annual_analysis'][symbol] = annual_data
+            
+            # Resumo consolidado
+            analysis['summary'] = self._calculate_temporal_summary(analysis)
+            
+            return analysis
+            
+        except Exception as e:
+            logger.error(f"Erro ao gerar análise temporal: {e}")
+            return {}
+
+    def _calculate_temporal_summary(self, analysis: Dict) -> Dict[str, Any]:
+        """Calcula resumo da análise temporal"""
+        try:
+            monthly_data = analysis.get('monthly_analysis', {})
+            annual_data = analysis.get('annual_analysis', {})
+            
+            # Estatísticas mensais
+            all_monthly_returns = []
+            for symbol_data in monthly_data.values():
+                all_monthly_returns.extend(symbol_data.get('monthly_returns', []))
+            
+            # Estatísticas anuais
+            all_annual_returns = []
+            for symbol_data in annual_data.values():
+                all_annual_returns.extend(symbol_data.get('annual_returns', []))
+            
+            summary = {
+                'total_assets_analyzed': len(monthly_data),
+                'period_description': analysis.get('period_info', {}).get('description', ''),
+                'monthly_stats': {
+                    'avg_return': np.mean(all_monthly_returns) if all_monthly_returns else 0,
+                    'volatility': np.std(all_monthly_returns) if all_monthly_returns else 0,
+                    'best_month': max(all_monthly_returns) if all_monthly_returns else 0,
+                    'worst_month': min(all_monthly_returns) if all_monthly_returns else 0,
+                    'positive_months': sum(1 for r in all_monthly_returns if r > 0),
+                    'total_months': len(all_monthly_returns)
+                },
+                'annual_stats': {
+                    'avg_return': np.mean(all_annual_returns) if all_annual_returns else 0,
+                    'volatility': np.std(all_annual_returns) if all_annual_returns else 0,
+                    'best_year': max(all_annual_returns) if all_annual_returns else 0,
+                    'worst_year': min(all_annual_returns) if all_annual_returns else 0,
+                    'positive_years': sum(1 for r in all_annual_returns if r > 0),
+                    'total_years': len(all_annual_returns)
+                }
+            }
+            
+            return summary
+            
+        except Exception as e:
+            logger.error(f"Erro ao calcular resumo temporal: {e}")
+            return {}
 
 # Instância global para uso em outros módulos
 market_indices = MarketIndicesManager() 
