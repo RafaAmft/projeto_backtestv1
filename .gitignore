@@ -7,3 +7,42 @@ __pycache__/
 venv/
 env/
 
+# Cache e arquivos temporários
+.pytest_cache/
+cache_temp/
+dados_debug/
+relatorios_antigos/
+testes_antigos/
+
+# Arquivos de debug e logs
+debug_*.html
+*.log
+
+# Arquivos de dados temporários
+dados_*.json
+test_*.json
+relatorio_*.json
+portfolio_analysis_*.json
+market_data_*.json
+temporal_portfolio_analysis_*.json
+real_portfolio_test_*.json
+crypto_portfolio_report.json
+relatorio_inconsistencias_cvm_*.json
+teste_caixa_ouro_*.json
+test_fund_integration_*.json
+
+# Gráficos gerados
+*.png
+*.jpg
+*.jpeg
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+

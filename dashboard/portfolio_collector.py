@@ -26,6 +26,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import time
+import logging
+
+# Configuração da página - DEVE SER A PRIMEIRA CHAMADA DO STREAMLIT
+st.set_page_config(
+    page_title="Coletor de Portfólio Financeiro",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Adicionar caminhos do projeto
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -39,14 +48,6 @@ try:
 except ImportError as e:
     st.error(f"Erro ao importar módulos: {e}")
     st.info("Certifique-se de que todos os arquivos do projeto estão no lugar correto")
-
-# Configuração da página
-st.set_page_config(
-    page_title="Coletor de Portfólio Financeiro",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # CSS personalizado
 st.markdown("""
@@ -158,38 +159,30 @@ class PortfolioDataCollector:
     def extrair_dados_fundo(self, slug: str, cnpj: str) -> Optional[Dict]:
         """
         Extrai dados de rentabilidade do fundo
-        
-        Args:
-            slug: Slug do fundo no Mais Retorno
-            cnpj: CNPJ do fundo
-            
-        Returns:
-            Dicionário com dados do fundo ou None
+        Adiciona logs/prints para debug e garante serialização dos dados.
         """
+        logging.basicConfig(level=logging.INFO)
+        logger = logging.getLogger("extrair_dados_fundo")
         # Primeiro, verificar se já temos os dados em cache
         cached_data = self.cache_manager.get_fund_data(cnpj)
         if cached_data:
+            logger.info(f"[CACHE] Dados do fundo {cnpj} recuperados do cache.")
             return cached_data
-        
         url = f"https://maisretorno.com/fundo/{slug}"
-        
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
-        
         try:
             driver = webdriver.Chrome(options=options)
             driver.get(url)
             time.sleep(3)
-            
             soup = BeautifulSoup(driver.page_source, "html.parser")
-            
-            # Extrair nome do fundo
+            # Salvar HTML para debug
+            with open(f"debug_{slug}.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
             nome_element = soup.find('h1') or soup.find('title')
             nome_fundo = nome_element.get_text().strip() if nome_element else "Fundo não identificado"
-            
-            # Extrair dados básicos
             dados = {
                 'nome': nome_fundo,
                 'cnpj': cnpj,
@@ -198,11 +191,9 @@ class PortfolioDataCollector:
                 'rentabilidades': {},
                 'ultima_atualizacao': datetime.now().isoformat()
             }
-            
             # Tentar extrair rentabilidades da tabela
             titulo = soup.find(lambda tag: tag.name == 'h2' and 'Rentabilidade histórica' in tag.text)
             tabela = titulo.find_next('table') if titulo else soup.find('table')
-            
             if tabela:
                 linhas = tabela.find_all("tr")
                 for i, tr in enumerate(linhas):
@@ -210,28 +201,25 @@ class PortfolioDataCollector:
                     linha = [td.get_text(strip=True) for td in tds]
                     if i == 0 or not linha or not linha[0].isdigit():
                         continue
-                    
                     ano = int(linha[0])
                     dados['rentabilidades'][ano] = {}
-                    
-                    # Extrair dados mensais (simplificado)
-                    meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 
-                            'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-                    
+                    meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
                     for j, campo in enumerate(linha[2:14]):
                         if j < len(meses):
                             try:
                                 valor = float(campo.replace('%', '').replace(',', '.')) / 100
-                                dados['rentabilidades'][ano][meses[j]] = valor
-                            except:
+                                dados['rentabilidades'][ano][meses[j]] = float(valor)
+                            except Exception as e:
+                                logger.warning(f"Erro ao converter valor do mês {meses[j]}: {campo} - {e}")
                                 continue
-            
+            else:
+                logger.warning(f"Tabela de rentabilidade não encontrada para {slug}")
             # Salvar dados no cache
             self.cache_manager.save_fund_data(cnpj, dados)
-            
+            logger.info(f"[SCRAPING] Dados extraídos e salvos para {cnpj}")
             return dados
-            
         except Exception as e:
+            logger.error(f"Erro ao extrair dados do fundo: {e}")
             st.error(f"Erro ao extrair dados do fundo: {e}")
             return None
         finally:
