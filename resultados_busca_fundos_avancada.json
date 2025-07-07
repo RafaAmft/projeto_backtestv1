@@ -1,0 +1,42 @@
+{
+  "04.305.193/0001-40": {
+    "nome": "BB Cambial Euro LP FIC FIF RL",
+    "nome_alternativo": "BB Cambial Euro",
+    "slug": "bb-cambial-euro-lp-fic-fif-rl",
+    "url": "https://maisretorno.com/fundo/bb-cambial-euro-lp-fic-fif-rl",
+    "metodo_busca": "CNPJ",
+    "dados_extraidos": true
+  },
+  "20.077.065/0001-42": {
+    "nome": "Mapfre FI Financeiro Cambial RL",
+    "nome_alternativo": "Mapfre Cambial",
+    "slug": null,
+    "url": null,
+    "metodo_busca": null,
+    "dados_extraidos": false
+  },
+  "24.633.789/0001-86": {
+    "nome": "Sicredi FIF Classe FIC Cambial Dólar LP RL",
+    "nome_alternativo": "Sicredi Cambial Dólar",
+    "slug": null,
+    "url": null,
+    "metodo_busca": null,
+    "dados_extraidos": false
+  },
+  "33.144.687/0001-98": {
+    "nome": "BTG Pactual Digital Dólar FI Cambial",
+    "nome_alternativo": "BTG Digital Dólar",
+    "slug": null,
+    "url": null,
+    "metodo_busca": null,
+    "dados_extraidos": false
+  },
+  "10.362.043/0001-70": {
+    "nome": "Santander VIP Cambial FIF RL",
+    "nome_alternativo": "Santander VIP Cambial",
+    "slug": null,
+    "url": null,
+    "metodo_busca": null,
+    "dados_extraidos": false
+  }
+}

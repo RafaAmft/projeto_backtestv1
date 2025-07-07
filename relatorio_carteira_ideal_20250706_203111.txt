@@ -1,0 +1,188 @@
+
+================================================================================
+                    RELATÓRIO DA CARTEIRA IDEAL
+================================================================================
+
+📅 Data de Geração: 06/07/2025 às 20:31:11
+📊 Período de Análise: Últimos 24 meses
+💰 Valor Total da Carteira: R$ 300,000.00
+
+================================================================================
+
+📋 RESUMO EXECUTIVO
+----------------------------------------
+
+🎯 Estratégia: Diversificação equilibrada com foco em preservação de capital e crescimento moderado
+⚠️ Perfil de Risco: Moderado
+⏰ Horizonte de Tempo: Médio a longo prazo
+🔄 Rebalanceamento: Trimestral
+
+📊 Alocação por Classe de Ativo:
+   • Renda Fixa: 40.0%
+   • Fundos Cambiais: 15.0%
+   • Criptomoedas: 15.0%
+   • Ações: 30.0%
+
+================================================================================
+
+📊 ANÁLISE DETALHADA POR ATIVO
+----------------------------------------
+
+Fundo Cambial: BB Cambial Euro LP FIC FIF RL
+   💰 Valor Investido: R$ 15,000.00
+   📈 Percentual da Carteira: 5.00%
+   📊 Rentabilidade: 1.68%
+   📅 Anos de Dados: 25
+
+Fundo Cambial: Mapfre FI Financeiro Cambial RL
+   💰 Valor Investido: R$ 10,000.00
+   📈 Percentual da Carteira: 3.33%
+   📊 Rentabilidade: -9.40%
+   📅 Anos de Dados: 12
+
+Fundo Cambial: Sicredi FIF Classe FIC Cambial Dólar LP RL
+   💰 Valor Investido: R$ 10,000.00
+   📈 Percentual da Carteira: 3.33%
+   📊 Rentabilidade: -9.41%
+   📅 Anos de Dados: 6
+
+Fundo Cambial: BTG Pactual Digital Dólar FI Cambial
+   💰 Valor Investido: R$ 5,000.00
+   📈 Percentual da Carteira: 1.67%
+   📊 Rentabilidade: -9.84%
+   📅 Anos de Dados: 7
+
+Fundo Cambial: Santander VIP Cambial FIF RL
+   💰 Valor Investido: R$ 5,000.00
+   📈 Percentual da Carteira: 1.67%
+   📊 Rentabilidade: -9.87%
+   📅 Anos de Dados: 17
+
+Ação: Petrobras
+   💰 Valor Investido: R$ 40,000.00
+   📈 Percentual da Carteira: 13.33%
+   💵 Preço Atual: R$ 32.12
+
+Ação: Vale
+   💰 Valor Investido: R$ 25,000.00
+   📈 Percentual da Carteira: 8.33%
+   💵 Preço Atual: R$ 55.20
+
+Ação: Banco do Brasil
+   💰 Valor Investido: R$ 25,000.00
+   📈 Percentual da Carteira: 8.33%
+   💵 Preço Atual: R$ 22.43
+
+Criptomoeda: Bitcoin
+   💰 Valor Investido: R$ 20,000.00
+   📈 Percentual da Carteira: 6.67%
+   💵 Preço Atual: R$ 109,145.99
+
+Criptomoeda: Ethereum
+   💰 Valor Investido: R$ 10,000.00
+   📈 Percentual da Carteira: 3.33%
+   💵 Preço Atual: R$ 2,570.59
+
+Criptomoeda: Tether USDt
+   💰 Valor Investido: R$ 5,000.00
+   📈 Percentual da Carteira: 1.67%
+   💵 Preço Atual: R$ 1.00
+
+Criptomoeda: BNB
+   💰 Valor Investido: R$ 5,000.00
+   📈 Percentual da Carteira: 1.67%
+   💵 Preço Atual: R$ 662.89
+
+Renda Fixa: CDB 95% CDI
+   💰 Valor Investido: R$ 60,000.00
+   📈 Percentual da Carteira: 20.00%
+   📊 Rentabilidade: 95% CDI
+
+Renda Fixa: LCI 90% CDI
+   💰 Valor Investido: R$ 60,000.00
+   📈 Percentual da Carteira: 20.00%
+   📊 Rentabilidade: 90% CDI
+
+================================================================================
+
+📈 MÉTRICAS DE RISCO E RETORNO
+----------------------------------------
+
+📊 Métricas Básicas:
+   • Retorno Esperado: 12.20%
+   • Volatilidade: 11.80%
+   • Sharpe Ratio: 0.53
+
+📊 Métricas Avançadas:
+   • Retorno Médio Mensal: 0.5425%
+   • Volatilidade Mensal: 0.0000%
+   • Sharpe Ratio (Avançado): 407331350867307.75
+   • Sortino Ratio: 0.00
+   • Máximo Drawdown: 0.00%
+   • CAGR (Retorno Anualizado): 6.71%
+
+================================================================================
+
+📈 EVOLUÇÃO MENAL DA CARTEIRA
+----------------------------------------
+
+   M0: R$ 175,000.00
+   M3: R$ 177,863.81
+   M6: R$ 180,774.49
+   M9: R$ 183,732.81
+   M12: R$ 186,739.53
+   M15: R$ 189,795.46
+   M18: R$ 192,901.40
+   M21: R$ 196,058.16
+   M24: R$ 199,266.58
+
+================================================================================
+
+🎯 OBJETIVOS DA CARTEIRA
+----------------------------------------
+   • Preservação de capital com renda fixa
+   • Proteção cambial com fundos especializados
+   • Exposição a crescimento com criptomoedas
+   • Participação no mercado acionário brasileiro
+
+================================================================================
+
+💡 RECOMENDAÇÕES
+----------------------------------------
+
+1. DIVERSIFICAÇÃO:
+   - A carteira está bem diversificada com 4 classes de ativos
+   - Renda fixa (40%) oferece estabilidade
+   - Ações (30%) proporcionam crescimento
+   - Fundos cambiais (15%) protegem contra variação cambial
+   - Criptomoedas (15%) oferecem potencial de alta rentabilidade
+
+2. MONITORAMENTO:
+   - Revisar alocação trimestralmente conforme estratégia
+   - Acompanhar performance vs benchmarks
+   - Rebalancear quando necessário
+
+3. GESTÃO DE RISCO:
+   - Sharpe Ratio de 0.53 indica boa relação risco-retorno
+   - Volatilidade de 11.80% está dentro do esperado
+   - Máximo drawdown de 0.00% é aceitável
+
+4. LIQUIDEZ:
+   - Ações e criptomoedas oferecem alta liquidez
+   - Fundos podem ter prazo de resgate
+   - Renda fixa pode ter vencimento específico
+
+================================================================================
+
+⚠️ DISCLAIMER
+----------------------------------------
+
+Este relatório é gerado automaticamente e não constitui recomendação de investimento.
+Consulte sempre um profissional qualificado antes de tomar decisões de investimento.
+Os valores e rentabilidades podem variar e não garantem resultados futuros.
+
+================================================================================
+
+📄 Relatório gerado automaticamente pelo Sistema de Análise Financeira
+🕐 06/07/2025 às 20:31:11
+================================================================================

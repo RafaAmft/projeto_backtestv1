@@ -64,5 +64,41 @@
     "nome": "XP INVESTOR LONG BIASED II FIC FI FINANCEIRO MULTIMERCADO RL",
     "slug": "xp-investor-long-biased-ii-fic-fi-financeiro-multimercado-rl",
     "cache_date": "2025-07-06T15:00:31.857607"
+  },
+  "18832847000106": {
+    "cache_key": "59aa89420d365907dce9172823a22f4e",
+    "nome": "Fundo não identificado",
+    "slug": "versa-long-biased-fi-financeiro-multimercado-rl",
+    "cache_date": "2025-07-06T18:34:51.378265"
+  },
+  "04.305.193/0001-40": {
+    "cache_key": "21422e1e8f4449226c48c28597153390",
+    "nome": "Fundo não identificado",
+    "slug": "bb-cambial-euro-lp-fic-fif-rl",
+    "cache_date": "2025-07-06T19:21:25.148616"
+  },
+  "20.077.065/0001-42": {
+    "cache_key": "1766c6ff405d6ab4896427f9350500c4",
+    "nome": "Fundo não identificado",
+    "slug": "mapfre-fi-financeiro-cambial-rl",
+    "cache_date": "2025-07-06T19:21:41.522955"
+  },
+  "24.633.789/0001-86": {
+    "cache_key": "2067e8203cd90d8af7164c0eff7280dc",
+    "nome": "Fundo não identificado",
+    "slug": "sicredi-fif-classe-fic-cambial-dolar-lp-rl",
+    "cache_date": "2025-07-06T19:21:56.355320"
+  },
+  "33.144.687/0001-98": {
+    "cache_key": "b47dcc7bda5b5a6e20f84bc34d9df62c",
+    "nome": "Fundo não identificado",
+    "slug": "btg-pactual-digital-dolar-fi-cambial",
+    "cache_date": "2025-07-06T19:22:10.794507"
+  },
+  "10.362.043/0001-70": {
+    "cache_key": "e68b638b2943733387d8c21135a0c93e",
+    "nome": "Fundo não identificado",
+    "slug": "santander-vip-cambial-fif-rl",
+    "cache_date": "2025-07-06T19:22:29.259031"
   }
 }

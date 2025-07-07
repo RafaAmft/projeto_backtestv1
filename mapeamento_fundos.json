@@ -1,0 +1,56 @@
+{
+  "mapeamento_fundos": {
+    "04.305.193/0001-40": {
+      "nome": "BB Cambial Euro LP FIC FIF RL",
+      "slug": "bb-cambial-euro-lp-fic-fif-rl",
+      "url": "https://maisretorno.com/fundo/bb-cambial-euro-lp-fic-fif-rl",
+      "status": "funcionando"
+    },
+    "20.077.065/0001-42": {
+      "nome": "Mapfre FI Financeiro Cambial RL",
+      "slug": "mapfre-fi-financeiro-cambial-rl",
+      "url": "https://maisretorno.com/fundo/mapfre-fi-financeiro-cambial-rl",
+      "status": "testar"
+    },
+    "24.633.789/0001-86": {
+      "nome": "Sicredi FIF Classe FIC Cambial Dólar LP RL",
+      "slug": "sicredi-fif-classe-fic-cambial-dolar-lp-rl",
+      "url": "https://maisretorno.com/fundo/sicredi-fif-classe-fic-cambial-dolar-lp-rl",
+      "status": "testar"
+    },
+    "33.144.687/0001-98": {
+      "nome": "BTG Pactual Digital Dólar FI Cambial",
+      "slug": "btg-pactual-digital-dolar-fi-cambial",
+      "url": "https://maisretorno.com/fundo/btg-pactual-digital-dolar-fi-cambial",
+      "status": "testar"
+    },
+    "10.362.043/0001-70": {
+      "nome": "Santander VIP Cambial FIF RL",
+      "slug": "santander-vip-cambial-fif-rl",
+      "url": "https://maisretorno.com/fundo/santander-vip-cambial-fif-rl",
+      "status": "testar"
+    }
+  },
+  "fundos_alternativos": {
+    "mapfre": {
+      "nome": "Mapfre Cambial",
+      "slug": "mapfre-cambial",
+      "url": "https://maisretorno.com/fundo/mapfre-cambial",
+      "status": "alternativo"
+    },
+    "btg": {
+      "nome": "BTG Digital Dólar",
+      "slug": "btg-digital-dolar",
+      "url": "https://maisretorno.com/fundo/btg-digital-dolar",
+      "status": "alternativo"
+    },
+    "santander": {
+      "nome": "Santander VIP Cambial",
+      "slug": "santander-vip-cambial",
+      "url": "https://maisretorno.com/fundo/santander-vip-cambial",
+      "status": "alternativo"
+    }
+  },
+  "ultima_atualizacao": "2025-01-06",
+  "observacoes": "Mapeamento manual dos fundos da carteira ideal. Alguns slugs podem precisar de ajustes baseados na disponibilidade real no Mais Retorno."
+} 

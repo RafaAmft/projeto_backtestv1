@@ -1,0 +1,42 @@
+{
+  "04.305.193/0001-40": {
+    "nome": "BB Cambial Euro LP FIC FIF RL",
+    "slug": "bb-cambial-euro-lp-fic-fif-rl",
+    "url": "https://maisretorno.com/fundo/bb-cambial-euro-lp-fic-fif-rl",
+    "dados_extraidos": true,
+    "anos_dados": 25,
+    "metodo": "Mapeamento Manual"
+  },
+  "20.077.065/0001-42": {
+    "nome": "Mapfre FI Financeiro Cambial RL",
+    "slug": "mapfre-fi-financeiro-cambial-rl",
+    "url": "https://maisretorno.com/fundo/mapfre-fi-financeiro-cambial-rl",
+    "dados_extraidos": true,
+    "anos_dados": 12,
+    "metodo": "Mapeamento Manual"
+  },
+  "24.633.789/0001-86": {
+    "nome": "Sicredi FIF Classe FIC Cambial Dólar LP RL",
+    "slug": "sicredi-fif-classe-fic-cambial-dolar-lp-rl",
+    "url": "https://maisretorno.com/fundo/sicredi-fif-classe-fic-cambial-dolar-lp-rl",
+    "dados_extraidos": true,
+    "anos_dados": 6,
+    "metodo": "Mapeamento Manual"
+  },
+  "33.144.687/0001-98": {
+    "nome": "BTG Pactual Digital Dólar FI Cambial",
+    "slug": "btg-pactual-digital-dolar-fi-cambial",
+    "url": "https://maisretorno.com/fundo/btg-pactual-digital-dolar-fi-cambial",
+    "dados_extraidos": true,
+    "anos_dados": 7,
+    "metodo": "Mapeamento Manual"
+  },
+  "10.362.043/0001-70": {
+    "nome": "Santander VIP Cambial FIF RL",
+    "slug": "santander-vip-cambial-fif-rl",
+    "url": "https://maisretorno.com/fundo/santander-vip-cambial-fif-rl",
+    "dados_extraidos": true,
+    "anos_dados": 17,
+    "metodo": "Mapeamento Manual"
+  }
+}
