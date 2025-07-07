@@ -47,7 +47,6 @@ mypy>=1.5.0
 
 # Cache e performance
 redis>=4.6.0
-memcached>=1.59
 
 # Segurança
 cryptography>=41.0.0
