@@ -49,3 +49,11 @@ Thumbs.db
 # Jupyter Notebook
 .ipynb_checkpoints/
 
+# Arquivos de dados grandes (usar Git LFS para arquivos importantes)
+# Excluir arquivos temporários e de cache grandes
+*.tmp
+*.temp
+cache_*.json
+temp_*.csv
+backup_*.csv
+
