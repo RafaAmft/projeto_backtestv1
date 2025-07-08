@@ -57,3 +57,14 @@ cache_*.json
 temp_*.csv
 backup_*.csv
 
+# Arquivos de teste e relatórios temporários
+test_report_*.json
+relatorio_carteira_ideal_*.json
+yahoo_connection_test.json
+resultado_data_manager.txt
+
+# Arquivos de debug e desenvolvimento
+README_SISTEMA_NOVO.md
+debug_*.html
+debug_*.txt
+

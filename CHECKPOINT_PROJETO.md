@@ -31,7 +31,7 @@ O projeto está em excelente estado de desenvolvimento com funcionalidades robus
 ├── 🔌 apis/                   # ✅ Integrações com APIs
 │   ├── binance_api.py        # API Binance
 │   ├── yahoo_api.py          # API Yahoo Finance
-│   └── cvm_api.py            # API CVM
+│   └── cvm_api.py            # Processamento de dados de fundos (CVM local + scraping)
 ├── 📊 dashboard/              # ✅ Painel interativo
 │   ├── portfolio_collector.py # Coletor principal
 │   ├── fund_cache_manager.py # Gerenciador de cache
@@ -70,7 +70,7 @@ O projeto está em excelente estado de desenvolvimento com funcionalidades robus
 ### 📊 APIs Integradas (100% Funcional)
 - [x] **Binance API** - Criptomoedas em tempo real (8 símbolos)
 - [x] **Yahoo Finance** - Ações, índices, commodities (15+ símbolos)
-- [x] **CVM API** - Dados de fundos brasileiros
+- [x] **CVM API** - Dados processados localmente (CVM) + scraping Mais Retorno
 - [x] **Exchange Rate API** - Cotações de câmbio com fallback
 - [x] **IBGE API** - Dados econômicos brasileiros
 

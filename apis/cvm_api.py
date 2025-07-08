@@ -4,14 +4,15 @@ import numpy as np
 import io
 
 # ⬇️ Carrega os dados
+# Dados processados localmente da CVM
 df_final = pd.read_excel("transformados/df_final.xlsx")
 df_auditoria = pd.read_excel("auditoria_rentabilidades_mensais.xlsx")
 
 # 🔧 Configuração da página
 st.set_page_config(layout='wide', page_title="Painel Carteira CVM", page_icon="📊")
 
-st.title("📈 Painel de Rentabilidade da Carteira - Caixa CVM")
-st.markdown("Versão preliminar – atualizada em 29/06/2025")
+st.title("📈 Painel de Rentabilidade da Carteira - Fundos CVM (dados locais + scraping)")
+st.markdown("Versão preliminar – dados de fundos processados localmente da CVM e complementados via scraping do Mais Retorno. Atualizada em 29/06/2025")
 
 # 🔘 Navegação lateral
 aba = st.sidebar.radio("Selecione a Visão", [
