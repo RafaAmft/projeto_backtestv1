@@ -1,0 +1,241 @@
+# Configuração do Sistema Robusto de Obtenção de Dados Financeiros
+# Versão: 1.0
+# Data: 07/07/2025
+
+# Configurações Gerais
+app:
+  name: "Sistema Robusto de Obtenção de Dados Financeiros"
+  version: "1.0"
+  environment: "development"  # development, staging, production
+  debug: true
+  timezone: "America/Sao_Paulo"
+
+# Configurações de Cache
+cache:
+  # Cache em memória
+  memory:
+    enabled: true
+    max_size: 1000  # Máximo de itens
+    cleanup_interval: 300  # Limpeza a cada 5 minutos
+  
+  # Cache persistente
+  persistent:
+    enabled: true
+    storage_type: "json"  # json, sqlite
+    directory: "data/cache"
+    backup_enabled: true
+    backup_interval: 3600  # Backup a cada hora
+  
+  # Expiração por tipo de dado (em segundos)
+  expiration:
+    stock: 300      # 5 minutos
+    crypto: 60      # 1 minuto
+    currency: 600   # 10 minutos
+    commodity: 300  # 5 minutos
+    index: 300      # 5 minutos
+    fund: 3600      # 1 hora
+
+# Configurações de Retry
+retry:
+  enabled: true
+  max_attempts: 3
+  base_delay: 1.0  # Delay base em segundos
+  max_delay: 30.0  # Delay máximo em segundos
+  exponential_backoff: true
+  jitter: true  # Adiciona variação aleatória
+
+# Configurações de Timeout
+timeout:
+  default: 30  # Timeout padrão em segundos
+  short: 10    # Timeout curto
+  long: 60     # Timeout longo
+
+# Configurações de Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/data_system.log"
+  max_size: "10MB"
+  backup_count: 5
+  console: true
+
+# Configurações de Qualidade de Dados
+quality:
+  validation_enabled: true
+  min_quality_threshold: "FAIR"  # EXCELLENT, GOOD, FAIR, POOR
+  auto_fallback: true
+  quality_metrics:
+    enabled: true
+    save_metrics: true
+    metrics_file: "data/quality_metrics.json"
+
+# Configurações de APIs
+
+# Yahoo Finance
+apis:
+  yahoo_finance:
+    enabled: true
+    priority: 1  # Prioridade mais alta
+    timeout: 30
+    retry_count: 3
+    rate_limit: 100  # Requisições por minuto
+    symbols:
+      stocks:
+        - "PETR4.SA"
+        - "VALE3.SA"
+        - "ITUB4.SA"
+        - "BBAS3.SA"
+        - "^BVSP"
+        - "^GSPC"
+        - "^IXIC"
+      currencies:
+        - "USDBRL=X"
+        - "EURBRL=X"
+        - "GBPBRL=X"
+      commodities:
+        - "GC=F"
+        - "SI=F"
+        - "CL=F"
+
+# Binance API
+  binance:
+    enabled: true
+    priority: 2
+    base_url: "https://api.binance.com"
+    timeout: 10
+    rate_limit: 1200
+    symbols:
+      - "BTCUSDT"
+      - "ETHUSDT"
+      - "BNBUSDT"
+      - "ADAUSDT"
+      - "SOLUSDT"
+      - "XRPUSDT"
+      - "DOTUSDT"
+      - "USDCUSDT"
+
+# Alpha Vantage
+  alpha_vantage:
+    enabled: true
+    priority: 3
+    base_url: "https://www.alphavantage.co"
+    api_key: "demo"  # Substituir por sua API key
+    timeout: 30
+    rate_limit: 500  # Requisições por dia (gratuito)
+    symbols:
+      stocks:
+        - "PETR4.SA"
+        - "VALE3.SA"
+        - "ITUB4.SA"
+
+# Exchange Rate API
+  exchange_rate:
+    enabled: true
+    priority: 4
+    base_url: "https://api.exchangerate-api.com/v4/latest"
+    timeout: 10
+    rate_limit: 1000
+    currencies:
+      - "USD"
+      - "EUR"
+      - "GBP"
+      - "BRL"
+
+# Banco Central
+  banco_central:
+    enabled: true
+    priority: 5
+    base_url: "https://api.bcb.gov.br"
+    timeout: 15
+    rate_limit: 100
+    endpoints:
+      usd_brl: "/dados/serie/bcdata.sgs.1/dados/ultimos/1"
+      cdi: "/dados/serie/bcdata.sgs.12/dados/ultimos/1"
+
+# Twelve Data
+  twelve_data:
+    enabled: true
+    priority: 6
+    base_url: "https://api.twelvedata.com"
+    api_key: "demo"  # Substituir por sua API key
+    timeout: 10
+    rate_limit: 800  # Requisições por mês (gratuito)
+    symbols:
+      commodities:
+        - "XAUUSD"  # Ouro
+        - "XAGUSD"  # Prata
+        - "USOIL"   # Petróleo
+
+# Configurações de Fallback
+fallback:
+  enabled: true
+  use_simulated_data: false  # Não usar dados simulados em produção
+  simulated_data:
+    enabled: false
+    file: "data/simulated_data.json"
+  
+  # Ordem de fallback por tipo de dado
+  order:
+    stock:
+      - "yahoo_finance"
+      - "alpha_vantage"
+      - "investing"
+    crypto:
+      - "binance"
+      - "yahoo_finance"
+    currency:
+      - "yahoo_finance"
+      - "exchange_rate"
+      - "banco_central"
+    commodity:
+      - "yahoo_finance"
+      - "twelve_data"
+
+# Configurações de Monitoramento
+monitoring:
+  enabled: true
+  metrics_interval: 60  # Coletar métricas a cada minuto
+  health_check_interval: 300  # Verificar saúde a cada 5 minutos
+  
+  # Alertas
+  alerts:
+    enabled: true
+    error_threshold: 0.1  # 10% de erro
+    response_time_threshold: 10.0  # 10 segundos
+    quality_threshold: "FAIR"
+  
+  # Dashboard
+  dashboard:
+    enabled: true
+    port: 8080
+    host: "localhost"
+
+# Configurações de Performance
+performance:
+  max_concurrent_requests: 10
+  connection_pool_size: 20
+  keep_alive: true
+  compression: true
+
+# Configurações de Segurança
+security:
+  validate_ssl: true
+  user_agent: "SistemaObtencaoDados/1.0"
+  api_key_rotation: false
+  log_sensitive_data: false
+
+# Configurações de Backup
+backup:
+  enabled: true
+  frequency: "daily"
+  retention_days: 30
+  include_cache: true
+  include_logs: true
+  backup_dir: "backups"
+
+# Configurações de Testes
+testing:
+  mock_apis: false
+  test_data_dir: "tests/data"
+  coverage_threshold: 80
+  timeout: 30 

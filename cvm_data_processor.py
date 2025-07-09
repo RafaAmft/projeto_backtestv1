@@ -3,8 +3,8 @@
 Sistema de Processamento e Validação de Dados Brutos da CVM
 ==========================================================
 
-Este módulo processa os dados brutos da CVM, identifica inconsistências
-e gera dados limpos e validados para análise.
+Este módulo processa os dados brutos baixados da CVM (não uma API REST), identifica inconsistências
+e gera dados limpos e validados para análise local.
 """
 
 import pandas as pd

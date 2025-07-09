@@ -21,7 +21,9 @@ from typing import Dict, List, Optional, Tuple
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import time
 import logging
@@ -183,7 +185,8 @@ class PortfolioDataCollectorV3:
             options.add_argument("--disable-dev-shm-usage")
             
             try:
-                driver = webdriver.Chrome(options=options)
+                service = Service(ChromeDriverManager().install())
+                driver = webdriver.Chrome(service=service, options=options)
                 driver.get(url)
                 time.sleep(3)  # Aumentar tempo de espera
                 
@@ -264,7 +267,8 @@ class PortfolioDataCollectorV3:
         options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
         
         try:
-            driver = webdriver.Chrome(options=options)
+            service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=options)
             driver.get(url)
             time.sleep(3)
             

@@ -21,7 +21,7 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 ├── 🔌 apis/                   # ✅ Integrações com APIs
 │   ├── binance_api.py        # API Binance
 │   ├── yahoo_api.py          # API Yahoo Finance
-│   └── cvm_api.py            # API CVM
+│   └── cvm_api.py            # Processamento de dados de fundos (CVM local + scraping)
 ├── 📊 dashboard/              # ✅ Painel interativo
 │   ├── portfolio_collector.py # Coletor principal
 │   ├── fund_cache_manager.py # Gerenciador de cache
@@ -60,7 +60,7 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 ### 📊 APIs Integradas
 - [x] **Binance API** - Criptomoedas em tempo real (8 símbolos)
 - [x] **Yahoo Finance** - Ações, índices, commodities (15+ símbolos)
-- [x] **CVM API** - Dados de fundos brasileiros
+- [x] **Fundos CVM** - Dados processados localmente (CVM) + scraping Mais Retorno
 - [x] **Exchange Rate API** - Cotações de câmbio com fallback
 - [x] **IBGE API** - Dados econômicos brasileiros
 
@@ -80,6 +80,13 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 - [x] **Testes Automatizados** - 15+ testes de validação
 - [x] **Sistema de Cache** - Otimização de performance
 
+### 📁 Gestão de Arquivos Grandes
+- [x] **Git LFS** - Rastreamento automático de arquivos grandes
+- [x] **Sistema de Download** - Script para arquivos externos
+- [x] **4 Fontes Configuradas** - Fundos (170MB), Ações (50MB), Renda Fixa (25MB), Criptos (80MB)
+- [x] **Documentação Completa** - Guias de uso e troubleshooting
+- [x] **Scripts de Teste** - Validação do sistema
+
 ---
 
 ## 🚀 Próximas Funcionalidades (Roadmap)
@@ -87,11 +94,21 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 ### 📅 Fase 1: Melhorias e Otimizações (Julho 2025)
 
 #### 🔧 Melhorias no Core
-- [ ] **Configuração via YAML** - Arquivo de configuração centralizado
+- [x] **Configuração via YAML** - Arquivo de configuração centralizado
 - [ ] **Rate Limiting** - Controle de requisições por API
 - [ ] **Retry Logic** - Tentativas automáticas em falhas
 - [ ] **Métricas de Performance** - Monitoramento de latência
 - [ ] **Validação de Dados** - Schemas de validação
+
+#### 📁 Gestão de Arquivos Grandes
+- [x] **Git LFS** - Configurado para arquivos CSV, Excel, JSON, ZIP
+- [x] **Sistema de Download Externo** - Script para arquivos > 50MB
+- [x] **Configuração de Fontes** - JSON com URLs e metadados
+- [x] **Documentação Completa** - README e guias de uso
+- [x] **Scripts de Teste** - Validação do sistema de download
+- [ ] **Integração com APIs Reais** - URLs de dados financeiros
+- [ ] **Validação de Integridade** - Checksums e verificação
+- [ ] **Backup Automático** - Sincronização com storage externo
 
 #### 📊 Novas APIs
 - [ ] **Alpha Vantage** - Dados fundamentais de ações
@@ -170,6 +187,8 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 - [x] **824 Linhas de Código** - Core system robusto
 - [x] **4 Testes Automatizados** - Validação contínua
 - [x] **3 Relatórios Gerados** - Análises completas
+- [x] **Sistema de Arquivos Grandes** - Git LFS + Download externo
+- [x] **4 Fontes de Dados** - 325MB total configurado
 
 ### 📈 Performance
 - [ ] **< 2s Response Time** - Tempo de resposta
@@ -197,6 +216,12 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
    - Cache em Redis/Memcached
    - Cache hierárquico
    - Invalidação inteligente
+
+3. **Integração de Arquivos Grandes**
+   - Configurar URLs reais no `data_sources.json`
+   - Testar downloads com dados financeiros reais
+   - Implementar validação de integridade (checksums)
+   - Configurar backup automático dos dados externos
 
 3. **Testes Automatizados**
    - Testes unitários para todas as classes

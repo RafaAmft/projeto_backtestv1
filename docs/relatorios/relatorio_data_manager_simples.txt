@@ -1,0 +1,91 @@
+RELATÓRIO DO DATA MANAGER - TESTE INTEGRADO
+============================================================
+Data/Hora: 07/07/2025 14:34:41
+============================================================
+
+RESULTADOS DOS TESTES:
+
+✅ TESTE 1: Inicialização do Data Manager
+- Data Manager inicializado com sucesso
+- Providers disponíveis: ['yahoo_finance', 'fundos']
+- Timeout configurado: 30s
+- Fallback habilitado: True
+
+✅ TESTE 2: Preços de Ações
+- PETR4.SA: R$ 31.91 (Fonte: yahoo_finance, Qualidade: good)
+- VALE3.SA: R$ 54.36 (Fonte: yahoo_finance, Qualidade: good)
+- ITUB4.SA: R$ 37.19 (Fonte: yahoo_finance, Qualidade: good)
+- ^BVSP: R$ 139322.02 (Fonte: yahoo_finance, Qualidade: good)
+- Cache funcionando corretamente (cache hits)
+
+✅ TESTE 3: Preços de Criptomoedas
+- BTC-USD: $ 108,284.34 (Fonte: yahoo_finance, Qualidade: good)
+- ETH-USD: $ 2,542.51 (Fonte: yahoo_finance, Qualidade: good)
+- BNB-USD: $ 658.56 (Fonte: yahoo_finance, Qualidade: good)
+
+❌ TESTE 4: Taxas de Câmbio
+- Erro: 'PriceData' object has no attribute 'rate'
+- Necessário ajuste no método para taxas de câmbio
+
+✅ TESTE 5: Múltiplas Ações (Paralelo)
+- Tempo total: 0.20s
+- Resultados obtidos: 5/5 ações
+- PETR4.SA: R$ 31.91 (yahoo_finance)
+- VALE3.SA: R$ 54.36 (yahoo_finance)
+- ITUB4.SA: R$ 37.19 (yahoo_finance)
+- BBAS3.SA: R$ 22.00 (yahoo_finance)
+- ^BVSP: R$ 139322.02 (yahoo_finance)
+
+❌ TESTE 6: Dados de Fundos
+- Fundos não encontrados (limitação do provider/slug)
+- CNPJs testados: 00.017.024/0001-53, 33.000.167/0001-01
+
+✅ TESTE 7: Operações de Cache
+- Requisições: 11
+- Cache hits: 8
+- Cache misses: 11
+- Erros: 0
+- Fallbacks: 0
+- Providers Ativos: yahoo_finance, fundos
+- Cache: Hits: 8, Misses: 25, Sets: 22
+
+✅ TESTE 8: Force Refresh
+- Dados atualizados: R$ 31.91
+- Fonte: yahoo_finance
+- Tempo: 0.01s
+
+AVISOS E PROBLEMAS IDENTIFICADOS:
+
+⚠️ Erro de Serialização do Cache Persistente:
+- "Object of type PriceData is not JSON serializable"
+- Cache em memória funciona, mas persistente não salva objetos PriceData
+- Necessário implementar serialização/deserialização adequada
+
+⚠️ Taxas de Câmbio:
+- Método get_exchange_rate retorna PriceData em vez de ExchangeRate
+- Necessário ajuste no Data Manager
+
+⚠️ Dados de Fundos:
+- Provider não consegue encontrar slugs para os CNPJs testados
+- Necessário melhorar busca de fundos
+
+CONCLUSÕES:
+
+✅ SUCESSOS:
+- Data Manager inicializado corretamente
+- Integração com Yahoo Finance funcionando
+- Cache em memória operacional
+- Busca de ações e criptomoedas funcionando
+- Operações paralelas funcionando
+- Force refresh funcionando
+- Estatísticas sendo coletadas
+
+❌ PROBLEMAS A RESOLVER:
+- Serialização do cache persistente
+- Método de taxas de câmbio
+- Busca de fundos de investimento
+
+STATUS GERAL: 🟡 FUNCIONANDO COM AJUSTES NECESSÁRIOS
+
+O Data Manager está operacional e integrado com o cache manager, 
+mas precisa de alguns ajustes para funcionar completamente. 

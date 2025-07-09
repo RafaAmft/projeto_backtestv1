@@ -79,6 +79,19 @@ apis:
     timeout: 15
     data_path: "CNPJ VALIDADO/transformados/"
 
+# Dados de Fundos - Fontes Locais e Web Scraping
+  fundos:
+    # Web Scraping - Mais Retorno
+    mais_retorno:
+      base_url: "https://maisretorno.com"
+      timeout: 30
+      user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    # Dados Processados da CVM (locais)
+    cvm_dados_locais:
+      data_path: "CNPJ VALIDADO/transformados/"
+      cache_duration: 2592000  # 30 dias em segundos
+      backup_path: "data/cache/funds/"
+
 # Configurações de Análise
 analysis:
   historical_days: 30

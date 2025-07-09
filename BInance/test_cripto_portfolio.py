@@ -457,7 +457,7 @@ class CryptoPortfolioTester:
 
 def main():
     """Função principal"""
-    print("�� INICIANDO TESTE DE RENTABILIDADE - CARTEIRA DE CRIPTOMOEDAS")
+    print("🚀 INICIANDO TESTE DE RENTABILIDADE - CARTEIRA DE CRIPTOMOEDAS")
     print("="*60)
     
     # Criar instância do tester

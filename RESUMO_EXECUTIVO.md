@@ -21,7 +21,7 @@ O projeto está **100% funcional** e operacional. É um sistema completo de aná
 **APIs Integradas:**
 - ✅ Binance (8 criptomoedas)
 - ✅ Yahoo Finance (15+ ações/índices)
-- ✅ CVM (fundos brasileiros)
+- ✅ Fundos CVM (dados processados localmente + scraping Mais Retorno)
 - ✅ Exchange Rate (câmbio)
 - ✅ IBGE (dados econômicos)
 

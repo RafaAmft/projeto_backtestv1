@@ -16,7 +16,7 @@ Sistema completo e robusto para análise de portfólios, auditoria de fundos e m
 ### 📊 APIs Integradas
 - **Binance API** - Criptomoedas em tempo real (8 símbolos)
 - **Yahoo Finance** - Ações, índices, commodities (15+ símbolos)
-- **CVM API** - Dados de fundos brasileiros
+- **Fundos CVM** - Dados processados localmente (CVM) + scraping Mais Retorno
 - **Exchange Rate API** - Cotações de câmbio com fallback
 - **IBGE API** - Dados econômicos brasileiros
 
@@ -30,7 +30,7 @@ Sistema completo e robusto para análise de portfólios, auditoria de fundos e m
 
 ### 🎯 Funcionalidades Específicas
 - **Dashboard Streamlit** - Interface web interativa
-- **Auditoria de Fundos** - Validação CVM com scraping automático
+- **Auditoria de Fundos** - Validação automática via dados processados da CVM e scraping Mais Retorno
 - **Relatórios Automatizados** - JSON estruturado e TXT formatado
 - **Testes Automatizados** - 15+ testes de validação
 - **Sistema de Cache** - Otimização de performance
@@ -109,7 +109,7 @@ streamlit run dashboard/portfolio_collector.py
 ├── 🔌 apis/                   # ✅ Integrações com APIs
 │   ├── binance_api.py        # API Binance
 │   ├── yahoo_api.py          # API Yahoo Finance
-│   └── cvm_api.py            # API CVM
+│   └── cvm_api.py            # Processamento de dados de fundos (CVM local + scraping)
 ├── 📊 dashboard/              # ✅ Painel interativo
 │   ├── portfolio_collector.py # Coletor principal
 │   ├── fund_cache_manager.py # Gerenciador de cache
@@ -208,7 +208,7 @@ O sistema inclui uma **carteira ideal** com 13 ativos distribuídos em 4 classes
 - **Indicadores de Mercado**: Índice medo/ganância, sentimento
 - **Cache Inteligente**: 5 minutos de cache para otimização
 - **Tratamento de Erros**: Fallback automático para APIs
-- **Auditoria de Fundos**: Validação automática via CVM
+- **Auditoria de Fundos**: Validação automática via dados processados da CVM e scraping Mais Retorno
 
 ## 🧪 Testes
 
@@ -269,8 +269,8 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 ## 👨‍💻 Autor
 
 **Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/RafaAmft/projeto_backtestv1)
-- LinkedIn: [Seu Perfil](www.linkedin.com/in/rafael-augusto-masson-fontes-94228a27a)
+- GitHub: [@RafaAmft](https://github.com/RafaAmft/projeto_backtestv1)
+- LinkedIn: [[Meu Perfil](https://www.linkedin.com/in/rafael-augusto-masson-fontes-94228a27a/)]
 
 ## 🙏 Agradecimentos
 

@@ -101,3 +101,20 @@ config_local.yaml
 settings_local.py
 local_config.py
 
+# Arquivos de dados grandes (usar Git LFS para arquivos importantes)
+# Excluir arquivos temporários e de cache grandes
+*.tmp
+*.temp
+cache_*.json
+temp_*.csv
+backup_*.csv
+
+# Arquivos de teste e relatórios temporários
+test_report_*.json
+yahoo_connection_test.json
+resultado_data_manager.txt
+
+# Arquivos de debug e desenvolvimento
+README_SISTEMA_NOVO.md
+debug_*.txt
+

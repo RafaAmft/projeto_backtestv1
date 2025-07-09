@@ -1,0 +1,41 @@
+RELATÓRIO DE TESTE - API CVM
+==================================================
+
+Data/Hora: 07/07/2025 12:03:54
+Total de Testes: 17
+Testes Bem-sucedidos: 1
+Taxa de Sucesso: 5.9%
+Status Geral: PROBLEMAS
+
+
+ENDPOINTS:
+------------------------------
+Informações Diárias: ERROR
+Cadastro de Fundos: ERROR
+Rentabilidade Anual: ERROR
+Rentabilidade Mensal: ERROR
+Dados Históricos: ERROR
+
+FUND_SEARCH:
+------------------------------
+04.305.193/0001-40: ERROR
+20.077.065/0001-42: ERROR
+33.144.687/0001-98: ERROR
+10.362.043/0001-70: ERROR
+
+DATA_DOWNLOAD:
+------------------------------
+CSV - Informações Diárias: ERROR
+CSV - Cadastro: ERROR
+JSON - Informações Diárias: ERROR
+
+RATE_LIMITS:
+------------------------------
+rate_limit_test: UNKNOWN
+
+LOCAL_DATA:
+------------------------------
+CNPJ VALIDADO/: EXISTS
+CNPJ VALIDADO/brutos/: NOT_FOUND
+CNPJ VALIDADO/derivados/: NOT_FOUND
+CNPJ VALIDADO/transformados/: NOT_FOUND
