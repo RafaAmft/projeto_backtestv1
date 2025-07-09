@@ -1,6 +1,6 @@
-# 📊 Sistema de Análise Financeira e Auditoria
+# 📊 projeto_backtestv1
 
-**Status:** 🟢 **PRONTO PARA PRODUÇÃO** | **Versão:** 2.0 | **Última Atualização:** 06/07/2025
+**Status:** 🟢 **PRONTO PARA PRODUÇÃO** | **Versão:** 1.0 | **Última Atualização:** 06/07/2025
 
 Sistema completo e robusto para análise de portfólios, auditoria de fundos e monitoramento de mercado em tempo real. Integra múltiplas APIs, oferece análise avançada de dados financeiros e gera relatórios automatizados.
 
