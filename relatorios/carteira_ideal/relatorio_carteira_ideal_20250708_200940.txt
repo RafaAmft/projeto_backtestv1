@@ -1,0 +1,200 @@
+================================================================================
+📋 RELATÓRIO COMPLETO - CARTEIRA IDEAL DIVERSIFICADA
+================================================================================
+Data/Hora: 08/07/2025 20:09:40
+Versão: 1.0
+
+📊 INFORMAÇÕES DA CARTEIRA
+--------------------------------------------------
+Nome: Carteira Ideal Diversificada
+Descrição: Carteira modelo com alocação equilibrada entre renda fixa, fundos cambiais, criptomoedas e ações
+Data de Criação: 2025-01-06
+Valor Total: R$ 300,000.00
+Perfil de Risco: Moderado
+Horizonte de Tempo: Médio a longo prazo
+Estratégia: Diversificação equilibrada com foco em preservação de capital e crescimento moderado
+
+🎯 ALOCAÇÃO POR CLASSE DE ATIVO
+--------------------------------------------------
+Renda Fixa: 40.0% (R$ 120,000.00)
+Fundos Cambiais: 15.0% (R$ 45,000.00)
+Criptomoedas: 15.0% (R$ 45,000.00)
+Ações: 30.0% (R$ 90,000.00)
+
+📈 ANÁLISE DETALHADA POR CLASSE
+================================================================================
+
+💰 RENDA FIXA
+------------------------------
+Valor Total: R$ 120,000.00
+Percentual da Carteira: 40.0%
+
+  • CDB 95% CDI
+    Valor: R$ 60,000.00
+    Taxa de Retorno: 95% CDI
+    Tipo: CDB
+
+  • LCI 90% CDI
+    Valor: R$ 60,000.00
+    Taxa de Retorno: 90% CDI
+    Tipo: LCI
+
+🏦 FUNDOS CAMBIAIS
+------------------------------
+Valor Total: R$ 45,000.00
+Percentual da Carteira: 15.0%
+
+  • BB Cambial Euro LP FIC FIF RL
+    CNPJ: 04.305.193/0001-40
+    Valor: R$ 15,000.00
+    Taxa de Retorno: 1.68%
+    Slug: bb-cambial-euro-lp-fic-fif-rl
+    Anos de Dados: 25
+
+  • Mapfre FI Financeiro Cambial RL
+    CNPJ: 20.077.065/0001-42
+    Valor: R$ 10,000.00
+    Taxa de Retorno: -9.40%
+    Slug: mapfre-fi-financeiro-cambial-rl
+    Anos de Dados: 12
+
+  • Sicredi FIF Classe FIC Cambial Dólar LP RL
+    CNPJ: 24.633.789/0001-86
+    Valor: R$ 10,000.00
+    Taxa de Retorno: -9.41%
+    Slug: sicredi-fif-classe-fic-cambial-dolar-lp-rl
+    Anos de Dados: 6
+
+  • BTG Pactual Digital Dólar FI Cambial
+    CNPJ: 33.144.687/0001-98
+    Valor: R$ 5,000.00
+    Taxa de Retorno: -9.84%
+    Slug: btg-pactual-digital-dolar-fi-cambial
+    Anos de Dados: 7
+
+  • Santander VIP Cambial FIF RL
+    CNPJ: 10.362.043/0001-70
+    Valor: R$ 5,000.00
+    Taxa de Retorno: -9.87%
+    Slug: santander-vip-cambial-fif-rl
+    Anos de Dados: 17
+
+₿ CRIPTOMOEDAS
+------------------------------
+Valor Total: R$ 45,000.00
+Percentual da Carteira: 15.0%
+
+  • Bitcoin (BTCUSDT)
+    Valor: R$ 20,000.00
+    Preço Atual: $108,947.94
+
+  • Ethereum (ETHUSDT)
+    Valor: R$ 10,000.00
+    Preço Atual: $2,614.87
+
+  • Tether USDt (USDT)
+    Valor: R$ 5,000.00
+    Preço Atual: $1.00
+
+  • BNB (BNBUSDT)
+    Valor: R$ 5,000.00
+    Preço Atual: $660.03
+
+📈 AÇÕES
+------------------------------
+Valor Total: R$ 90,000.00
+Percentual da Carteira: 30.0%
+
+  • Petrobras (PETR4.SA)
+    Valor: R$ 40,000.00
+    Preço Atual: R$ 32.52
+
+  • Vale (VALE3.SA)
+    Valor: R$ 25,000.00
+    Preço Atual: R$ 54.58
+
+  • Banco do Brasil (BBAS3.SA)
+    Valor: R$ 25,000.00
+    Preço Atual: R$ 22.00
+
+⚠️ MÉTRICAS DE RISCO
+------------------------------
+Retorno Esperado: 12.20%
+Volatilidade: 11.80%
+Sharpe Ratio: 0.53
+Diversificação: {'renda_fixa': 0.4, 'fundos_cambiais': 0.15, 'criptomoedas': 0.15, 'acoes': 0.3}
+
+📊 MÉTRICAS AVANÇADAS
+------------------------------
+retorno_medio_mensal: 0.005425
+volatilidade_mensal: 0.000000
+sharpe_ratio: 407331350867307.750000
+sortino_ratio: 0.000000
+max_drawdown: 0.000000
+cagr: 0.067083
+
+📈 EVOLUÇÃO MENSAL SIMULADA (ÚLTIMOS 24 MESES)
+------------------------------------------------------------
+M0: R$ 175,000.00
+M1: R$ 175,949.44
+M2: R$ 176,904.04
+M3: R$ 177,863.81
+M4: R$ 178,828.80
+M5: R$ 179,799.01
+M6: R$ 180,774.49
+M7: R$ 181,755.27
+M8: R$ 182,741.36
+M9: R$ 183,732.81
+M10: R$ 184,729.63
+M11: R$ 185,731.86
+M12: R$ 186,739.53
+M13: R$ 187,752.67
+M14: R$ 188,771.30
+M15: R$ 189,795.46
+M16: R$ 190,825.17
+M17: R$ 191,860.48
+M18: R$ 192,901.40
+M19: R$ 193,947.96
+M20: R$ 195,000.21
+M21: R$ 196,058.16
+M22: R$ 197,121.85
+M23: R$ 198,191.32
+M24: R$ 199,266.58
+
+📋 TABELA DETALHADA DE ATIVOS
+------------------------------------------------------------
+Classe          Nome                                     Valor           %        Rentabilidade  
+----------------------------------------------------------------------------------------------------
+Fundo Cambial   BB Cambial Euro LP FIC FIF RL            R$ 15,000.00    5.0%     1.68%          
+Fundo Cambial   Mapfre FI Financeiro Cambial RL          R$ 10,000.00    3.3%     -9.40%         
+Fundo Cambial   Sicredi FIF Classe FIC Cambial Dólar L.. R$ 10,000.00    3.3%     -9.41%         
+Fundo Cambial   BTG Pactual Digital Dólar FI Cambial     R$ 5,000.00     1.7%     -9.84%         
+Fundo Cambial   Santander VIP Cambial FIF RL             R$ 5,000.00     1.7%     -9.87%         
+Ação            Petrobras                                R$ 40,000.00    13.3%    N/A            
+Ação            Vale                                     R$ 25,000.00    8.3%     N/A            
+Ação            Banco do Brasil                          R$ 25,000.00    8.3%     N/A            
+Criptomoeda     Bitcoin                                  R$ 20,000.00    6.7%     N/A            
+Criptomoeda     Ethereum                                 R$ 10,000.00    3.3%     N/A            
+Criptomoeda     Tether USDt                              R$ 5,000.00     1.7%     N/A            
+Criptomoeda     BNB                                      R$ 5,000.00     1.7%     N/A            
+Renda Fixa      CDB 95% CDI                              R$ 60,000.00    20.0%    95% CDI        
+Renda Fixa      LCI 90% CDI                              R$ 60,000.00    20.0%    90% CDI        
+
+🎯 OBJETIVOS DA CARTEIRA
+------------------------------
+• Preservação de capital com renda fixa
+• Proteção cambial com fundos especializados
+• Exposição a crescimento com criptomoedas
+• Participação no mercado acionário brasileiro
+
+📝 OBSERVAÇÕES FINAIS
+------------------------------
+• Este relatório foi gerado automaticamente pelo sistema de análise de carteiras
+• Os dados de mercado são atualizados em tempo real
+• As métricas de risco são calculadas com base em dados históricos
+• Recomenda-se rebalanceamento trimestral conforme estratégia definida
+• Consulte um profissional de investimentos antes de tomar decisões
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
