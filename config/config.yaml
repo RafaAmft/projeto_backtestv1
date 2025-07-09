@@ -29,8 +29,9 @@ logging:
 apis:
   binance:
     base_url: "https://api.binance.com"
-    api_key: ""  # Opcional para dados públicos
-    api_secret: ""  # Opcional para dados públicos
+    # ⚠️ CHAVES DE API DEVEM SER CONFIGURADAS VIA VARIÁVEIS DE AMBIENTE
+    # api_key: ${BINANCE_API_KEY}
+    # api_secret: ${BINANCE_API_SECRET}
     timeout: 10
     rate_limit: 1200  # Requisições por minuto
     symbols:
@@ -143,6 +144,13 @@ security:
   sanitize_data: true
   log_sensitive_operations: false
   api_key_rotation: false
+  # ⚠️ CONFIGURAÇÕES DE SEGURANÇA AVANÇADAS
+  encryption_enabled: false
+  ssl_verify: true
+  rate_limiting: true
+  input_validation: true
+  sql_injection_protection: true
+  xss_protection: true
 
 # Configurações de Monitoramento
 monitoring:
@@ -168,7 +176,8 @@ notifications:
     smtp_server: ""
     smtp_port: 587
     username: ""
-    password: ""
+    # ⚠️ SENHA DEVE SER CONFIGURADA VIA VARIÁVEL DE AMBIENTE
+    # password: ${SMTP_PASSWORD}
     recipients: []
   webhook:
     enabled: false

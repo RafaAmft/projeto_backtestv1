@@ -41,7 +41,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Importar módulos do projeto
 try:
-    from core.market_indices import MarketIndicesManager
+    from core.market_indices_fixed import MarketIndicesManager
     from examples.portfolio_analysis_example import PortfolioAnalyzer
     from examples.temporal_portfolio_analysis import TemporalPortfolioAnalyzer
     from dashboard.fund_cache_manager import get_cache_manager

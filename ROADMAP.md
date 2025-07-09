@@ -286,3 +286,197 @@ Este é um sistema completo de análise financeira que integra múltiplas fontes
 ---
 
 *Este roadmap será atualizado mensalmente com base no progresso e feedback dos usuários.* 
+
+# ROADMAP - Sistema de Análise de Carteiras
+
+## 🎯 **Objetivos Principais**
+- Sistema completo de análise e auditoria de portfólios financeiros
+- Integração com múltiplas APIs de dados de mercado
+- Geração automática de relatórios profissionais
+- Dashboard interativo para visualização de dados
+
+## 📋 **Funcionalidades Implementadas**
+
+### ✅ **Core System**
+- [x] MarketIndicesManager com singleton pattern
+- [x] Integração com Yahoo Finance, Binance API
+- [x] Sistema de cache otimizado
+- [x] Coleta de dados de fundos via scraping
+- [x] Busca automática de slugs por CNPJ
+
+### ✅ **Relatórios**
+- [x] Geração de relatórios JSON estruturados
+- [x] Relatórios TXT formatados profissionalmente
+- [x] Gráficos de evolução de carteira
+- [x] Métricas de risco calculadas
+
+### ✅ **Dashboard**
+- [x] Interface Streamlit responsiva
+- [x] Coleta de dados em tempo real
+- [x] Visualização de portfólios
+- [x] Cache de dados de fundos
+
+## 🚀 **Melhorias Futuras - Análise Automática**
+
+### 🔍 **Análise Inteligente de Carteiras**
+**Problema Identificado**: Atualmente o sistema usa metadados pré-definidos para perfil de risco, estratégia e objetivos.
+
+**Solução Proposta**: Implementar análise automática baseada nos dados reais dos ativos.
+
+#### **1. Cálculo Automático de Perfil de Risco**
+```python
+def calcular_perfil_risco_automatico(carteira):
+    """
+    Calcula perfil de risco baseado na volatilidade dos ativos
+    """
+    volatilidades = {
+        'renda_fixa': 0.05,      # Baixa volatilidade
+        'fundos_cambiais': 0.15, # Média volatilidade
+        'acoes': 0.25,           # Alta volatilidade
+        'criptomoedas': 0.80     # Muito alta volatilidade
+    }
+    
+    # Calcular volatilidade ponderada da carteira
+    volatilidade_total = 0
+    for classe, percentual in carteira['alocacao'].items():
+        volatilidade_total += percentual * volatilidades[classe]
+    
+    # Classificar perfil
+    if volatilidade_total < 0.10:
+        return "Conservador"
+    elif volatilidade_total < 0.20:
+        return "Moderado"
+    elif volatilidade_total < 0.35:
+        return "Moderado-Agressivo"
+    else:
+        return "Agressivo"
+```
+
+#### **2. Determinação Automática de Horizonte**
+```python
+def determinar_horizonte_automatico(carteira):
+    """
+    Determina horizonte baseado na liquidez e características dos ativos
+    """
+    liquidez_baixa = 0
+    for classe, percentual in carteira['alocacao'].items():
+        if classe in ['fundos_cambiais', 'renda_fixa']:
+            liquidez_baixa += percentual
+    
+    if liquidez_baixa > 0.60:
+        return "Longo prazo"
+    elif liquidez_baixa > 0.30:
+        return "Médio a longo prazo"
+    else:
+        return "Médio prazo"
+```
+
+#### **3. Geração Automática de Estratégia**
+```python
+def gerar_estrategia_automatica(carteira, perfil_risco, horizonte):
+    """
+    Gera estratégia baseada na composição e características da carteira
+    """
+    estrategias = {
+        'Conservador': "Preservação de capital com foco em renda fixa",
+        'Moderado': "Diversificação equilibrada com crescimento moderado",
+        'Moderado-Agressivo': "Crescimento com exposição a ativos de risco",
+        'Agressivo': "Maximização de retorno com alta exposição a risco"
+    }
+    
+    return estrategias.get(perfil_risco, "Estratégia personalizada")
+```
+
+#### **4. Objetivos Automáticos**
+```python
+def gerar_objetivos_automaticos(carteira, perfil_risco):
+    """
+    Gera objetivos baseados na composição da carteira
+    """
+    objetivos = []
+    
+    if carteira['alocacao']['renda_fixa'] > 0.30:
+        objetivos.append("Preservação de capital com renda fixa")
+    
+    if carteira['alocacao']['fundos_cambiais'] > 0.10:
+        objetivos.append("Proteção cambial com fundos especializados")
+    
+    if carteira['alocacao']['criptomoedas'] > 0.10:
+        objetivos.append("Exposição a crescimento com criptomoedas")
+    
+    if carteira['alocacao']['acoes'] > 0.20:
+        objetivos.append("Participação no mercado acionário")
+    
+    return objetivos
+```
+
+### 📊 **Métricas Avançadas**
+- [ ] **Correlação entre ativos** - Análise de dependência
+- [ ] **Beta da carteira** - Sensibilidade ao mercado
+- [ ] **VaR (Value at Risk)** - Risco de perda
+- [ ] **Stress testing** - Cenários adversos
+- [ ] **Backtesting** - Teste com dados históricos
+
+### 🤖 **IA e Machine Learning**
+- [ ] **Recomendações automáticas** de rebalanceamento
+- [ ] **Predição de tendências** baseada em dados históricos
+- [ ] **Otimização de portfólio** usando algoritmos genéticos
+- [ ] **Detecção de anomalias** nos dados de mercado
+
+### 🔄 **Automação**
+- [ ] **Relatórios automáticos** por email
+- [ ] **Alertas de rebalanceamento** quando necessário
+- [ ] **Integração com APIs** de corretoras
+- [ ] **Sincronização automática** de dados
+
+## 📅 **Cronograma de Implementação**
+
+### **Fase 1 - Análise Automática (Próxima Sprint)**
+- [ ] Implementar cálculo automático de perfil de risco
+- [ ] Desenvolver determinação automática de horizonte
+- [ ] Criar geração automática de estratégia
+- [ ] Implementar objetivos automáticos
+
+### **Fase 2 - Métricas Avançadas**
+- [ ] Correlação entre ativos
+- [ ] Beta da carteira
+- [ ] VaR e stress testing
+
+### **Fase 3 - IA e Automação**
+- [ ] Recomendações automáticas
+- [ ] Alertas e notificações
+- [ ] Integração com corretoras
+
+## 🎯 **Benefícios Esperados**
+
+### **Para o Usuário:**
+- ✅ Análise mais precisa e objetiva
+- ✅ Recomendações personalizadas
+- ✅ Menos dependência de configuração manual
+- ✅ Insights baseados em dados reais
+
+### **Para o Sistema:**
+- ✅ Maior inteligência e autonomia
+- ✅ Análises mais consistentes
+- ✅ Escalabilidade para diferentes carteiras
+- ✅ Valor agregado significativo
+
+## 📝 **Notas Técnicas**
+
+### **Arquivos a Modificar:**
+- `test_carteira_ideal.py` - Adicionar funções de análise automática
+- `carteira_ideal.json` - Tornar metadados opcionais
+- `core/portfolio_analyzer.py` - Novas métricas
+- `dashboard/` - Interface para análise automática
+
+### **Dependências:**
+- `scipy` - Para cálculos estatísticos
+- `scikit-learn` - Para ML (futuro)
+- `pandas` - Para análise de dados
+- `numpy` - Para cálculos numéricos
+
+---
+
+**Status**: 📋 Planejado para desenvolvimento posterior
+**Prioridade**: 🔥 Alta - Melhoria significativa na inteligência do sistema
+**Complexidade**: ⭐⭐⭐ Média - Requer implementação de algoritmos financeiros 

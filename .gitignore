@@ -14,6 +14,9 @@ dados_debug/
 relatorios_antigos/
 testes_antigos/
 
+# Cache de dados de fundos
+data/cache/funds/*.json
+
 # Arquivos de debug e logs
 debug_*.html
 *.log
@@ -31,6 +34,12 @@ relatorio_inconsistencias_cvm_*.json
 teste_caixa_ouro_*.json
 test_fund_integration_*.json
 
+# Relatórios gerados automaticamente
+relatorio_carteira_ideal_*.txt
+relatorio_carteira_ideal_*.json
+relatorio_portfolio_*.txt
+relatorio_*.txt
+
 # Gráficos gerados
 *.png
 *.jpg
@@ -45,4 +54,50 @@ test_fund_integration_*.json
 # Arquivos do sistema
 .DS_Store
 Thumbs.db
+
+# Jupyter Lab/Notebook
+.ipynb_checkpoints/
+*.ipynb
+jupyter_execute/
+.jupyter/
+
+# 🔒 SEGURANÇA - Arquivos sensíveis
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.csr
+secrets.json
+credentials.json
+config_secrets.yaml
+api_keys.txt
+tokens.txt
+
+# Logs de segurança
+security.log
+auth.log
+access.log
+
+# Arquivos de backup que podem conter dados sensíveis
+*.bak
+*.backup
+*_backup.*
+backup_*
+
+# Arquivos temporários que podem conter dados sensíveis
+temp_*
+tmp_*
+*_temp.*
+*_tmp.*
+
+# Arquivos de configuração local
+config_local.yaml
+settings_local.py
+local_config.py
 

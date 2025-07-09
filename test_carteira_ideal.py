@@ -531,6 +531,161 @@ class CarteiraIdealTest:
         
         return relatorio
 
+    def gerar_relatorio_txt(self, relatorio):
+        """Gera relatório em formato .txt"""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"relatorio_carteira_ideal_{timestamp}.txt"
+        
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write("="*80 + "\n")
+            f.write("📋 RELATÓRIO COMPLETO - CARTEIRA IDEAL DIVERSIFICADA\n")
+            f.write("="*80 + "\n")
+            f.write(f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
+            f.write(f"Versão: 1.0\n\n")
+            
+            # Informações da Carteira
+            f.write("📊 INFORMAÇÕES DA CARTEIRA\n")
+            f.write("-"*50 + "\n")
+            f.write(f"Nome: {relatorio['carteira']['nome']}\n")
+            f.write(f"Descrição: {relatorio['carteira']['descricao']}\n")
+            f.write(f"Data de Criação: {relatorio['carteira']['data_criacao']}\n")
+            f.write(f"Valor Total: R$ {relatorio['carteira']['valor_total']:,.2f}\n")
+            f.write(f"Perfil de Risco: {relatorio['carteira']['metadados']['perfil_risco']}\n")
+            f.write(f"Horizonte de Tempo: {relatorio['carteira']['metadados']['horizonte_tempo']}\n")
+            f.write(f"Estratégia: {relatorio['carteira']['metadados']['estrategia']}\n\n")
+            
+            # Alocação por Classe
+            f.write("🎯 ALOCAÇÃO POR CLASSE DE ATIVO\n")
+            f.write("-"*50 + "\n")
+            for classe, percentual in relatorio['resumo']['alocacao_por_classe'].items():
+                valor_classe = relatorio['carteira']['valor_total'] * float(percentual.strip('%')) / 100
+                f.write(f"{classe}: {percentual} (R$ {valor_classe:,.2f})\n")
+            f.write("\n")
+            
+            # Análise Detalhada por Classe
+            f.write("📈 ANÁLISE DETALHADA POR CLASSE\n")
+            f.write("="*80 + "\n")
+            
+            # Renda Fixa
+            f.write("\n💰 RENDA FIXA\n")
+            f.write("-"*30 + "\n")
+            renda_fixa = relatorio['analise']['renda_fixa']
+            f.write(f"Valor Total: R$ {renda_fixa['total']:,.2f}\n")
+            f.write(f"Percentual da Carteira: {renda_fixa['percentual']:.1f}%\n\n")
+            for item in renda_fixa['itens']:
+                f.write(f"  • {item['nome']}\n")
+                f.write(f"    Valor: R$ {item['valor']:,.2f}\n")
+                f.write(f"    Taxa de Retorno: {item['taxa_retorno']}\n")
+                f.write(f"    Tipo: {item['tipo']}\n\n")
+            
+            # Fundos Cambiais
+            f.write("🏦 FUNDOS CAMBIAIS\n")
+            f.write("-"*30 + "\n")
+            fundos = relatorio['analise']['fundos_cambiais']
+            f.write(f"Valor Total: R$ {fundos['total']:,.2f}\n")
+            f.write(f"Percentual da Carteira: {fundos['percentual']:.1f}%\n\n")
+            for cnpj, fundo in fundos['fundos'].items():
+                f.write(f"  • {fundo['nome']}\n")
+                f.write(f"    CNPJ: {cnpj}\n")
+                f.write(f"    Valor: R$ {fundo['valor']:,.2f}\n")
+                f.write(f"    Taxa de Retorno: {fundo['taxa_retorno']}\n")
+                f.write(f"    Slug: {fundo['slug']}\n")
+                if fundo.get('dados_mercado'):
+                    f.write(f"    Anos de Dados: {fundo.get('anos_dados', 'N/A')}\n")
+                else:
+                    f.write(f"    Status: {fundo.get('erro', 'Dados não disponíveis')}\n")
+                f.write("\n")
+            
+            # Criptomoedas
+            f.write("₿ CRIPTOMOEDAS\n")
+            f.write("-"*30 + "\n")
+            criptos = relatorio['analise']['criptomoedas']
+            f.write(f"Valor Total: R$ {criptos['total']:,.2f}\n")
+            f.write(f"Percentual da Carteira: {criptos['percentual']:.1f}%\n\n")
+            for ticker, cripto in criptos['criptos'].items():
+                f.write(f"  • {cripto['nome']} ({ticker})\n")
+                f.write(f"    Valor: R$ {cripto['valor']:,.2f}\n")
+                if cripto.get('preco_atual'):
+                    f.write(f"    Preço Atual: ${cripto['preco_atual']:,.2f}\n")
+                f.write("\n")
+            
+            # Ações
+            f.write("📈 AÇÕES\n")
+            f.write("-"*30 + "\n")
+            acoes = relatorio['analise']['acoes']
+            f.write(f"Valor Total: R$ {acoes['total']:,.2f}\n")
+            f.write(f"Percentual da Carteira: {acoes['percentual']:.1f}%\n\n")
+            for ticker, acao in acoes['acoes'].items():
+                f.write(f"  • {acao['nome']} ({ticker})\n")
+                f.write(f"    Valor: R$ {acao['valor']:,.2f}\n")
+                if acao.get('preco_atual'):
+                    f.write(f"    Preço Atual: R$ {acao['preco_atual']:,.2f}\n")
+                f.write("\n")
+            
+            # Métricas de Risco
+            f.write("⚠️ MÉTRICAS DE RISCO\n")
+            f.write("-"*30 + "\n")
+            metricas = relatorio['metricas_risco']
+            f.write(f"Retorno Esperado: {metricas['retorno_esperado']:.2%}\n")
+            f.write(f"Volatilidade: {metricas['volatilidade']:.2%}\n")
+            f.write(f"Sharpe Ratio: {metricas['sharpe_ratio']:.2f}\n")
+            f.write(f"Diversificação: {metricas['diversificacao']}\n\n")
+            
+            # Métricas Avançadas
+            f.write("📊 MÉTRICAS AVANÇADAS\n")
+            f.write("-"*30 + "\n")
+            metricas_av = relatorio['metricas_avancadas']
+            for k, v in metricas_av.items():
+                if isinstance(v, float):
+                    f.write(f"{k}: {v:.6f}\n")
+                else:
+                    f.write(f"{k}: {v}\n")
+            f.write("\n")
+            
+            # Evolução Mensal
+            f.write("📈 EVOLUÇÃO MENSAL SIMULADA (ÚLTIMOS 24 MESES)\n")
+            f.write("-"*60 + "\n")
+            evolucao = relatorio['evolucao_mensal']
+            for data, valor in zip(evolucao['datas'], evolucao['valores']):
+                f.write(f"{data}: R$ {valor:,.2f}\n")
+            f.write("\n")
+            
+            # Tabela de Ativos
+            f.write("📋 TABELA DETALHADA DE ATIVOS\n")
+            f.write("-"*60 + "\n")
+            f.write(f"{'Classe':<15} {'Nome':<40} {'Valor':<15} {'%':<8} {'Rentabilidade':<15}\n")
+            f.write("-"*100 + "\n")
+            for ativo in relatorio['ativos']:
+                nome = ativo['nome'][:38] + ".." if len(ativo['nome']) > 40 else ativo['nome']
+                valor = f"R$ {ativo['valor']:,.2f}"
+                percentual = f"{ativo['percentual']:.1f}%"
+                rentabilidade = ativo.get('rentabilidade', 'N/A') or 'N/A'
+                f.write(f"{ativo['classe']:<15} {nome:<40} {valor:<15} {percentual:<8} {rentabilidade:<15}\n")
+            f.write("\n")
+            
+            # Objetivos da Carteira
+            f.write("🎯 OBJETIVOS DA CARTEIRA\n")
+            f.write("-"*30 + "\n")
+            for objetivo in relatorio['carteira']['metadados']['objetivos']:
+                f.write(f"• {objetivo}\n")
+            f.write("\n")
+            
+            # Observações Finais
+            f.write("📝 OBSERVAÇÕES FINAIS\n")
+            f.write("-"*30 + "\n")
+            f.write("• Este relatório foi gerado automaticamente pelo sistema de análise de carteiras\n")
+            f.write("• Os dados de mercado são atualizados em tempo real\n")
+            f.write("• As métricas de risco são calculadas com base em dados históricos\n")
+            f.write("• Recomenda-se rebalanceamento trimestral conforme estratégia definida\n")
+            f.write("• Consulte um profissional de investimentos antes de tomar decisões\n\n")
+            
+            f.write("="*80 + "\n")
+            f.write("FIM DO RELATÓRIO\n")
+            f.write("="*80 + "\n")
+        
+        print(f"📄 Relatório TXT salvo em: {filename}")
+        return filename
+
 def main():
     """Função principal"""
     print("🚀 Iniciando teste da Carteira Ideal...")
@@ -543,6 +698,8 @@ def main():
     relatorio = teste.gerar_relatorio_completo()
     
     if relatorio:
+        # Gerar relatório em formato TXT
+        teste.gerar_relatorio_txt(relatorio)
         print("\n✅ Teste da Carteira Ideal concluído com sucesso!")
     else:
         print("\n❌ Erro durante o teste da Carteira Ideal!")

@@ -18,7 +18,20 @@ class MarketIndicesManager:
     Inclui criptomoedas, ações, câmbio e outros indicadores financeiros.
     """
     
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(MarketIndicesManager, cls).__new__(cls)
+        return cls._instance
+    
     def __init__(self):
+        # Evitar inicialização múltipla
+        if self._initialized:
+            return
+            
+        self._initialized = True
         self.cache = {}
         self.cache_duration = 300  # 5 minutos de cache
         self.last_update = {}

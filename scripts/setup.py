@@ -158,34 +158,236 @@ def create_config_files():
     else:
         print("⚠️ config.yaml não encontrado - será criado pelo usuário")
     
-    # Criar .env template
-    env_template = """# Configurações de Ambiente
-# Copie este arquivo para .env e configure suas chaves
+    # Criar .env template com configurações de segurança
+    env_template = """# 🔒 CONFIGURAÇÕES DE AMBIENTE - SISTEMA DE ANÁLISE FINANCEIRA
+# ⚠️ IMPORTANTE: Copie este arquivo para .env e configure suas chaves
+# ⚠️ NUNCA commite o arquivo .env no repositório
 
-# APIs (opcionais)
-BINANCE_API_KEY=
-BINANCE_API_SECRET=
+# ============================================================================
+# 🔑 CHAVES DE API (OPCIONAIS)
+# ============================================================================
 
-# Configurações de Log
+# Binance API (para dados privados e trading)
+BINANCE_API_KEY=your_binance_api_key_here
+BINANCE_API_SECRET=your_binance_api_secret_here
+
+# Yahoo Finance API (se necessário)
+YAHOO_API_KEY=your_yahoo_api_key_here
+
+# Exchange Rate API (se necessário)
+EXCHANGE_RATE_API_KEY=your_exchange_rate_api_key_here
+
+# ============================================================================
+# 📧 CONFIGURAÇÕES DE EMAIL (OPCIONAIS)
+# ============================================================================
+
+# Servidor SMTP
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your_email@gmail.com
+SMTP_PASSWORD=your_app_password_here
+
+# Destinatários para notificações
+EMAIL_RECIPIENTS=user1@example.com,user2@example.com
+
+# ============================================================================
+# 🔧 CONFIGURAÇÕES DO SISTEMA
+# ============================================================================
+
+# Nível de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 LOG_LEVEL=INFO
+
+# Arquivo de log
 LOG_FILE=logs/app.log
 
-# Configurações de Cache
+# Configurações de cache
 CACHE_DURATION=300
 CACHE_STORAGE=memory
 
-# Configurações de Email (opcional)
-SMTP_SERVER=
-SMTP_PORT=587
-SMTP_USERNAME=
-SMTP_PASSWORD=
-EMAIL_RECIPIENTS=
+# ============================================================================
+# 🌐 CONFIGURAÇÕES DE REDE
+# ============================================================================
+
+# Timeout para requisições HTTP (segundos)
+REQUEST_TIMEOUT=30
+
+# Número máximo de tentativas de reconexão
+MAX_RETRY_ATTEMPTS=3
+
+# Delay entre tentativas (segundos)
+RETRY_DELAY=1
+
+# ============================================================================
+# 🔒 CONFIGURAÇÕES DE SEGURANÇA
+# ============================================================================
+
+# Habilitar validação de entrada
+VALIDATE_INPUT=true
+
+# Habilitar sanitização de dados
+SANITIZE_DATA=true
+
+# Log de operações sensíveis (false em produção)
+LOG_SENSITIVE_OPERATIONS=false
+
+# Verificação SSL
+SSL_VERIFY=true
+
+# Rate limiting (requisições por minuto)
+RATE_LIMIT=1200
+
+# ============================================================================
+# 📊 CONFIGURAÇÕES DE ANÁLISE
+# ============================================================================
+
+# Taxa livre de risco (CDI anual)
+RISK_FREE_RATE=0.12
+
+# Nível de confiança para VaR
+CONFIDENCE_LEVEL=0.95
+
+# Janela de volatilidade (dias)
+VOLATILITY_WINDOW=30
+
+# ============================================================================
+# 🎯 CONFIGURAÇÕES DE PORTFÓLIO
+# ============================================================================
+
+# Moedas padrão
+DEFAULT_CURRENCIES=USD,BRL
+
+# Calcular métricas de risco
+CALCULATE_SHARPE=true
+CALCULATE_VAR=true
+CALCULATE_MAX_DRAWDOWN=true
+CALCULATE_BETA=true
+
+# ============================================================================
+# 📈 CONFIGURAÇÕES DE RELATÓRIOS
+# ============================================================================
+
+# Diretório de saída
+REPORTS_OUTPUT_DIR=reports/
+
+# Formatos de saída
+REPORTS_FORMATS=json,csv,xlsx
+
+# Salvar automaticamente
+AUTO_SAVE_REPORTS=true
+
+# Incluir gráficos
+INCLUDE_CHARTS=true
+
+# Incluir métricas
+INCLUDE_METRICS=true
+
+# ============================================================================
+# 🖥️ CONFIGURAÇÕES DO DASHBOARD
+# ============================================================================
+
+# Porta do Streamlit
+STREAMLIT_PORT=8501
+
+# Host do Streamlit
+STREAMLIT_HOST=localhost
+
+# Tema do Streamlit
+STREAMLIT_THEME=light
+
+# ============================================================================
+# 🧪 CONFIGURAÇÕES DE TESTES
+# ============================================================================
+
+# Usar APIs mock para testes
+MOCK_APIS=false
+
+# Diretório de dados de teste
+TEST_DATA_DIR=tests/data/
+
+# Threshold de cobertura de testes
+COVERAGE_THRESHOLD=80
+
+# Timeout para testes
+TEST_TIMEOUT=30
+
+# ============================================================================
+# 📊 CONFIGURAÇÕES DE MONITORAMENTO
+# ============================================================================
+
+# Habilitar monitoramento
+MONITORING_ENABLED=true
+
+# Intervalo de métricas (segundos)
+METRICS_INTERVAL=60
+
+# Thresholds de alerta
+ERROR_RATE_THRESHOLD=0.05
+RESPONSE_TIME_THRESHOLD=5.0
+CACHE_HIT_RATE_THRESHOLD=0.8
+
+# ============================================================================
+# 💾 CONFIGURAÇÕES DE BACKUP
+# ============================================================================
+
+# Habilitar backup
+BACKUP_ENABLED=true
+
+# Frequência de backup
+BACKUP_FREQUENCY=daily
+
+# Retenção de backups (dias)
+BACKUP_RETENTION_DAYS=30
+
+# Incluir relatórios no backup
+BACKUP_INCLUDE_REPORTS=true
+
+# Incluir logs no backup
+BACKUP_INCLUDE_LOGS=true
+
+# ============================================================================
+# 🔔 CONFIGURAÇÕES DE NOTIFICAÇÕES
+# ============================================================================
+
+# Habilitar notificações por email
+EMAIL_NOTIFICATIONS_ENABLED=false
+
+# Habilitar webhooks
+WEBHOOK_ENABLED=false
+
+# URL do webhook
+WEBHOOK_URL=
+
+# Eventos para notificação
+WEBHOOK_EVENTS=error,warning,success
+
+# ============================================================================
+# 🌍 CONFIGURAÇÕES DE AMBIENTE
+# ============================================================================
+
+# Ambiente (development, staging, production)
+ENVIRONMENT=development
+
+# Debug mode
+DEBUG=true
+
+# Timezone
+TIMEZONE=America/Sao_Paulo
+
+# ============================================================================
+# 📝 INSTRUÇÕES DE USO
+# ============================================================================
+
+# 1. Copie este arquivo para .env
+# 2. Configure as variáveis necessárias
+# 3. Mantenha as chaves de API seguras
+# 4. Nunca commite o arquivo .env
+# 5. Use diferentes configurações para cada ambiente
 """
     
     with open(".env.template", "w", encoding="utf-8") as f:
         f.write(env_template)
     
-    print("✅ .env.template criado")
+    print("✅ .env.template criado com configurações de segurança")
     return True
 
 def run_quick_tests():
