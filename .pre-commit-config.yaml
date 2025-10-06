@@ -1,0 +1,245 @@
+# ========================================
+# PRE-COMMIT HOOKS CONFIGURATION
+# Sistema de Análise de Portfólios v1.1.0
+# ========================================
+#
+# Instalação:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Executar manualmente:
+#   pre-commit run --all-files
+#
+# Atualizar hooks:
+#   pre-commit autoupdate
+# ========================================
+
+repos:
+  # ========================================
+  # FORMATAÇÃO DE CÓDIGO PYTHON
+  # ========================================
+  
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        name: Black - Formatador de código Python
+        language_version: python3.10
+        args: ['--line-length=100']
+        types: [python]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort - Organizar imports
+        args: ['--profile', 'black', '--line-length=100']
+        types: [python]
+
+  # ========================================
+  # LINTING E QUALIDADE DE CÓDIGO
+  # ========================================
+  
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        name: Flake8 - Linter Python
+        args: 
+          - '--max-line-length=100'
+          - '--extend-ignore=E203,W503,E501'
+          - '--max-complexity=15'
+        types: [python]
+        additional_dependencies:
+          - flake8-docstrings
+          - flake8-bugbear
+          - flake8-comprehensions
+
+  # ========================================
+  # TYPE CHECKING
+  # ========================================
+  
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        name: MyPy - Type checker
+        args: 
+          - '--ignore-missing-imports'
+          - '--python-version=3.10'
+          - '--no-strict-optional'
+        types: [python]
+        additional_dependencies:
+          - types-requests
+          - types-PyYAML
+          - pandas-stubs
+
+  # ========================================
+  # SEGURANÇA
+  # ========================================
+  
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.6
+    hooks:
+      - id: bandit
+        name: Bandit - Security linter
+        args: 
+          - '-c'
+          - 'pyproject.toml'
+          - '-r'
+          - 'core'
+          - 'apis'
+          - 'dashboard'
+        exclude: ^tests/
+
+  # ========================================
+  # HOOKS GERAIS
+  # ========================================
+  
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Arquivos
+      - id: trailing-whitespace
+        name: Remover espaços em branco no fim das linhas
+      
+      - id: end-of-file-fixer
+        name: Garantir nova linha no fim dos arquivos
+      
+      - id: check-added-large-files
+        name: Verificar arquivos grandes (>1MB)
+        args: ['--maxkb=1000']
+      
+      - id: check-merge-conflict
+        name: Verificar marcadores de merge conflict
+      
+      # YAML
+      - id: check-yaml
+        name: Verificar sintaxe YAML
+        exclude: ^config/.*\.yaml$  # Pode ter templates
+      
+      # JSON
+      - id: check-json
+        name: Verificar sintaxe JSON
+      
+      # TOML
+      - id: check-toml
+        name: Verificar sintaxe TOML
+      
+      # Segurança
+      - id: detect-private-key
+        name: Detectar chaves privadas
+      
+      - id: detect-aws-credentials
+        name: Detectar credenciais AWS
+        args: ['--allow-missing-credentials']
+      
+      # Python
+      - id: check-ast
+        name: Verificar sintaxe Python (AST)
+        types: [python]
+      
+      - id: check-builtin-literals
+        name: Verificar uso de literais built-in
+        types: [python]
+      
+      - id: check-docstring-first
+        name: Verificar docstring no topo
+        types: [python]
+      
+      - id: debug-statements
+        name: Verificar statements de debug
+        types: [python]
+      
+      - id: name-tests-test
+        name: Verificar nome de arquivos de teste
+        args: ['--pytest-test-first']
+        files: ^tests/
+
+  # ========================================
+  # DOCUMENTAÇÃO
+  # ========================================
+  
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        name: PyDocStyle - Verificar docstrings
+        args:
+          - '--convention=numpy'
+          - '--add-ignore=D100,D104,D105,D107'
+        types: [python]
+        exclude: ^tests/
+
+  # ========================================
+  # MARKDOWN E DOCUMENTAÇÃO
+  # ========================================
+  
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        name: MarkdownLint - Verificar markdown
+        args: ['--fix']
+        types: [markdown]
+
+  # ========================================
+  # NOTEBOOKS JUPYTER
+  # ========================================
+  
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.7.1
+    hooks:
+      - id: nbqa-black
+        name: Black em notebooks
+        args: ['--line-length=100']
+      
+      - id: nbqa-isort
+        name: isort em notebooks
+        args: ['--profile=black']
+      
+      - id: nbqa-flake8
+        name: Flake8 em notebooks
+        args: ['--max-line-length=100', '--extend-ignore=E203,W503']
+
+# ========================================
+# CONFIGURAÇÕES GLOBAIS
+# ========================================
+
+# Executar em paralelo
+default_stages: [commit]
+
+# Linguagens suportadas
+default_language_version:
+  python: python3.10
+
+# Falhar rápido (parar no primeiro erro)
+fail_fast: false
+
+# Mínimo de versão do pre-commit
+minimum_pre_commit_version: '2.20.0'
+
+# ========================================
+# COMANDOS ÚTEIS
+# ========================================
+#
+# Instalar hooks:
+#   pre-commit install
+#
+# Executar em todos os arquivos:
+#   pre-commit run --all-files
+#
+# Executar hook específico:
+#   pre-commit run black --all-files
+#
+# Atualizar versões dos hooks:
+#   pre-commit autoupdate
+#
+# Desinstalar hooks:
+#   pre-commit uninstall
+#
+# Pular verificação (não recomendado):
+#   git commit --no-verify
+#
+# ========================================
+

@@ -1,8 +1,17 @@
-# 📊 projeto_backtestv1
+# 📊 Sistema de Análise de Portfólios
 
-**Status:** 🟢 **PRONTO PARA PRODUÇÃO** | **Versão:** 1.0 | **Última Atualização:** 06/07/2025
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10+-green.svg)
+![Status](https://img.shields.io/badge/status-production-brightgreen.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-70%25-yellow.svg)
+
+**Versão:** 1.1.0 | **Status:** 🟢 **PRONTO PARA PRODUÇÃO** | **Última Atualização:** 06/10/2025
 
 Sistema completo e robusto para análise de portfólios, auditoria de fundos e monitoramento de mercado em tempo real. Integra múltiplas APIs, oferece análise avançada de dados financeiros e gera relatórios automatizados.
+
+> 🆕 **Novidade v1.1.0:** Versionamento semântico, configuração profissional, pre-commit hooks, pytest configurado e guia completo de boas práticas!
 
 ## 🚀 Funcionalidades Principais
 
@@ -35,18 +44,63 @@ Sistema completo e robusto para análise de portfólios, auditoria de fundos e m
 - **Testes Automatizados** - 15+ testes de validação
 - **Sistema de Cache** - Otimização de performance
 
+## ✨ Novidades v1.1.0
+
+### 🎯 Melhorias de Qualidade
+- ✅ **Versionamento Semântico** - Sistema de versões profissional
+- ✅ **Pre-commit Hooks** - Validação automática de código
+- ✅ **Pytest Configurado** - Framework de testes robusto
+- ✅ **Guia de Boas Práticas** - 1.300+ linhas de documentação
+- ✅ **CHANGELOG.md** - Histórico completo de mudanças
+- ✅ **pyproject.toml** - Configurações centralizadas
+
+### 📚 Documentação
+- 📄 Template de variáveis de ambiente (`.env.example`)
+- 📋 Configuração de testes (`pytest.ini`)
+- 🔧 Hooks de qualidade (`.pre-commit-config.yaml`)
+- 📖 Guia completo de boas práticas (`boaspraticas.md`)
+
+### 🔒 Segurança
+- 🛡️ Bandit e Safety configurados
+- 🔐 Sistema de variáveis de ambiente
+- ✅ Validação de configurações obrigatórias
+
+[Ver changelog completo](CHANGELOG.md)
+
+---
+
 ## 📦 Instalação
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/projeto-final.git
-cd projeto-final
+# 1. Clone o repositório
+git clone https://github.com/RafaAmft/projeto_backtestv1.git
+cd ProjetoFinal
 
-# Instale as dependências
+# 2. Crie e ative ambiente virtual (recomendado)
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
+
+# 3. Atualize pip
+pip install --upgrade pip
+
+# 4. Instale as dependências
 pip install -r requirements.txt
 
-# Execute o teste inicial
+# 5. Configure variáveis de ambiente (opcional)
+cp env.example.txt .env
+# Edite .env com suas credenciais
+
+# 6. Execute o teste inicial
 python test_carteira_ideal.py
+
+# 7. (Opcional) Instale hooks de desenvolvimento
+pip install pre-commit
+pre-commit install
 ```
 
 ## 🔧 Configuração
