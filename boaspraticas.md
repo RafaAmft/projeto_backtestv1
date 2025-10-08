@@ -1,4 +1,4 @@
-# 📘 Boas Práticas de Código – Cursora AI
+# 📘 Boas Práticas de Código
 
 **Versão:** 1.1.0  
 **Data:** 06/10/2025  
