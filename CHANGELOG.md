@@ -237,3 +237,4 @@ ProjetoFinal/
 **Mantenedor:** Rafael Augusto Masson Fontes  
 **GitHub:** [@RafaAmft](https://github.com/RafaAmft/projeto_backtestv1)
 
+

@@ -378,3 +378,4 @@ if __name__ == "__main__":
         print_error(f"\n\nErro fatal: {e}")
         sys.exit(1)
 
+

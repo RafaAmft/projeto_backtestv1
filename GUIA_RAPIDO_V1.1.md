@@ -376,3 +376,4 @@ Se você gostou da v1.1.0:
 **Data:** 06/10/2025  
 **Autor:** Rafael Augusto Masson Fontes
 
+
